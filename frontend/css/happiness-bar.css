@@ -34,27 +34,27 @@
 }
 
 .heart-1 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-2 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-3 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-4 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-5 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-6 {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg) scale(.4)
 }
 
 .heart-7 {

@@ -22,42 +22,12 @@ body {
   font-family: 'Press Start 2P', cursive;
 }
 
-.dog-1 {
-  position: absolute;
-  top: 65%;
-  right: 65%;
-}
-
-.dog-1-name {
-  color: white;
-  position: absolute;
-  top: 50%;
-  right: 65%;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-}
-
-.dog-2 {
-  position: absolute;
-  top: 65%;
-  right: 35%;
-}
-
-.dog-2-name {
-  color: white;
-  position: absolute;
-  top: 50%;
-  right: 35%;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-}
-
 .dog-1-stats {
   position: relative;
   width: 50%;
 }
 
-.annoying-dog:hover {
+.annoying-dog {
   -webkit-animation-name: vibrate;
   -webkit-animation-duration: 0.7s;
 	-webkit-animation-iteration-count: infinite;
