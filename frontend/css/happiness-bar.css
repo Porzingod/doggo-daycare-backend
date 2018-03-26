@@ -1,0 +1,74 @@
+.heart {
+  background-color: red;
+  display: inline-block;
+  height: 15px;
+  margin: 0 8px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 15px;
+}
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: red;
+  border-radius: 50%;
+  height: 15px;
+  position: absolute;
+  width: 15px;
+}
+.heart:before {
+  top: -10px;
+  left: 0;
+}
+.heart:after {
+  left: 10px;
+  top: 0;
+}
+
+.happiness {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  width: 90px;
+}
+
+.heart-1 {
+  transform: rotate(-45deg)
+}
+
+.heart-2 {
+  transform: rotate(-45deg)
+}
+
+.heart-3 {
+  transform: rotate(-45deg)
+}
+
+.heart-4 {
+  transform: rotate(-45deg)
+}
+
+.heart-5 {
+  transform: rotate(-45deg)
+}
+
+.heart-6 {
+  transform: rotate(-45deg)
+}
+
+.heart-7 {
+  transform: rotate(-45deg) scale(.4)
+}
+
+.heart-8 {
+  transform: rotate(-45deg) scale(.4)
+}
+
+.heart-9 {
+  transform: rotate(-45deg) scale(.4)
+}
+
+.heart-10 {
+  transform: rotate(-45deg) scale(.4)
+}

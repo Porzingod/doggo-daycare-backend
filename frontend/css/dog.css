@@ -2,18 +2,59 @@ body {
   background-color: black;
 }
 
-.pet-me {
+.annoying-dog {
+  width: 200px;
+  margin: -65px -100px 0px 0px;
+}
+
+.only-dog {
+  position: absolute;
+  top: 65%;
+  right: 50%;
+}
+
+.only-dog-name {
   color: white;
+  position: absolute;
+  top: 50%;
+  right: 50%;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
 }
 
-.annoying-dog {
-  width: 200px;
+.dog-1 {
+  position: absolute;
+  top: 65%;
+  right: 65%;
+}
+
+.dog-1-name {
+  color: white;
   position: absolute;
   top: 50%;
-  right: 50%;
-  margin: -65px -100px 0px 0px;
+  right: 65%;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.dog-2 {
+  position: absolute;
+  top: 65%;
+  right: 35%;
+}
+
+.dog-2-name {
+  color: white;
+  position: absolute;
+  top: 50%;
+  right: 35%;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.dog-1-stats {
+  position: relative;
+  width: 50%;
 }
 
 .annoying-dog:hover {
