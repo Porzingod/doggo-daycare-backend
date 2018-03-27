@@ -29,7 +29,7 @@ class Dog {
 
   renderOneDog() {
     document.body.innerHTML = `<div class="hidden" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 220px; margin-top: -100px; margin-left: -150px">
-      <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive; font-size: 30px;">${this.name}</p>
+      <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive; font-size: 30px;">${this.name.substring(0,10)}</p>
       <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
       <button id="pet-dog" style="visibility: hidden; position: absolute; top: 100%; left: 50%; margin-left: -24px; margin-top: -30px; font-size:20px; font-weight: bold;">Pet</button>
       <button id="feed-dog" style="visibility: hidden; position: absolute; top: 50%; margin-top: -5px; font-size:20px; font-weight: bold;">Feed</button>
@@ -81,7 +81,7 @@ class Dog {
     const makeLessHungry = (event) => {
       let userId = event.target.getAttribute('user_id')
       if (this.hunger < 10) {
-        this.hunger += 2
+        this.hunger += 1
         let hungerObject = {hunger: this.hunger}
         this.updateDog(hungerObject)
         this.renderDogHungerBars()
@@ -92,7 +92,7 @@ class Dog {
     const makeLessThirsty = (event) => {
       let userId = event.target.getAttribute('user_id')
       if(this.thirst < 10) {
-        this.thirst += 2
+        this.thirst += 1
         let thirstObject = {thirst: this.thirst}
         this.updateDog(thirstObject)
         this.renderDogThirstBars()
@@ -100,15 +100,15 @@ class Dog {
       }
     }
 
-    let happyInterval = Math.floor(Math.random() * 9000) + 4000
-    let hungryInterval = Math.floor(Math.random() * 9000) + 4000
-    let thirstyInterval = Math.floor(Math.random() * 9000) + 4000
+    let happyInterval = Math.floor(Math.random() * 90000) + 40000
+    let hungryInterval = Math.floor(Math.random() * 90000) + 40000
+    let thirstyInterval = Math.floor(Math.random() * 90000) + 40000
     setInterval(this.dogMovingAround, 3000)
     setInterval(this.makeLessHappy.bind(this), happyInterval)
     setInterval(this.makeMoreHungry.bind(this), hungryInterval)
     setInterval(this.makeMoreThirsty.bind(this), thirstyInterval)
-    setInterval(this.makeMorePoopy.bind(this), 10000)
-    setInterval(this.makeMorePipi.bind(this), 10000)
+    setInterval(this.makeMorePoopy.bind(this), 1200000)
+    setInterval(this.makeMorePipi.bind(this), 1200000)
   }
 
   renderDogHappiness() {
