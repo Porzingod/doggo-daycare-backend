@@ -115,18 +115,11 @@ class Dog {
 
   renderDogHappiness() {
     document.body.innerHTML += `<div class="dog-1-stats"> <p class="happiness">Happy</p>
-      <div class="heart heart-1"></div>
-      <div class="heart heart-2"></div>
-      <div class="heart heart-3"></div>
-      <div class="heart heart-4"></div>
-      <div class="heart heart-5"></div>
-      <div class="heart heart-6"></div>
-      <div class="heart heart-7"></div>
-      <div class="heart heart-8"></div>
-      <div class="heart heart-9"></div>
-      <div class="heart heart-10"></div>
     </div>`
-
+    let tenDivs = document.getElementsByClassName('dog-1-stats')[0]
+    for(let i=1; i <= 10; i++){
+      tenDivs.innerHTML += ` <div class="heart heart-${i}"></div>`
+    }
     this.renderDogHappinessBars()
   }
 
@@ -142,117 +135,51 @@ class Dog {
     }
   }
 
-  renderDogHunger() {
-    document.body.innerHTML += `<div class="dog-1-stats"> <p class="hunger">Food</p>
-      <div class="hunger-bar-1"></div>
-      <div class="hunger-bar-2"></div>
-      <div class="hunger-bar-3"></div>
-      <div class="hunger-bar-4"></div>
-      <div class="hunger-bar-5"></div>
-      <div class="hunger-bar-6"></div>
-      <div class="hunger-bar-7"></div>
-      <div class="hunger-bar-8"></div>
-      <div class="hunger-bar-9"></div>
-      <div class="hunger-bar-10"></div>
-    </div>`
-
-    this.renderDogHungerBars()
+  renderTenDivs(name, num) {
+    let tenDivs = document.getElementsByClassName('dog-1-stats')[num]
+    for(let i=1; i <= 10; i++){
+      tenDivs.innerHTML += ` <div class="${name}-bar-${i}"></div>`
+    }
   }
 
-  renderDogHungerBars() {
-    let hungerDivs = document.getElementsByClassName('dog-1-stats')[1]
+  renderStatBars(name, num) {
+    let statDivs = document.getElementsByClassName('dog-1-stats')[num]
     for(let i = 1; i <= 10; i ++) {
-      if (i <= this.hunger) {
-        hungerDivs.children[i].style.height = "20px"
+      if (i <= this[name]) {
+        statDivs.children[i].style.height = "20px"
       } else {
-        hungerDivs.children[i].style.height = "5px"
+        statDivs.children[i].style.height = "5px"
       }
     }
+  }
+
+  renderDogHunger() {
+    document.body.innerHTML += `<div class="dog-1-stats"> <p class="hunger">Food</p>
+    </div>`
+    this.renderTenDivs('hunger', 1)
+    this.renderStatBars('hunger', 1)
   }
 
   renderDogThirst() {
-
     document.body.innerHTML += `<div class="dog-1-stats"> <p class="thirst">Water</p>
-      <div class="thirst-bar-1"></div>
-      <div class="thirst-bar-2"></div>
-      <div class="thirst-bar-3"></div>
-      <div class="thirst-bar-4"></div>
-      <div class="thirst-bar-5"></div>
-      <div class="thirst-bar-6"></div>
-      <div class="thirst-bar-7"></div>
-      <div class="thirst-bar-8"></div>
-      <div class="thirst-bar-9"></div>
-      <div class="thirst-bar-10"></div>
     </div>`
-
-    this.renderDogThirstBars()
-  }
-
-  renderDogThirstBars() {
-    let thirstDivs = document.getElementsByClassName('dog-1-stats')[2]
-    for(let i = 1; i <= 10; i ++) {
-      if (i <= this.thirst) {
-        thirstDivs.children[i].style.height = "20px"
-      } else {
-        thirstDivs.children[i].style.height = "5px"
-      }
-    }
+    this.renderTenDivs('thirst', 2)
+    this.renderStatBars('thirst', 2)
   }
 
   renderDogPoopy() {
-
-    document.body.innerHTML += `<div class="dog-1-stats"> <p class="poopy">Poop</p>
-      <div class="poopy-bar-1"></div>
-      <div class="poopy-bar-2"></div>
-      <div class="poopy-bar-3"></div>
-      <div class="poopy-bar-4"></div>
-      <div class="poopy-bar-5"></div>
-      <div class="poopy-bar-6"></div>
-      <div class="poopy-bar-7"></div>
-      <div class="poopy-bar-8"></div>
-      <div class="poopy-bar-9"></div>
-      <div class="poopy-bar-10"></div>
+    document.body.innerHTML += `<div class="dog-1-stats">
+    <p class="poopy">Poop</p>
     </div>`
-    this.renderDogPoopyBars()
-  }
-
-  renderDogPoopyBars() {
-    let poopyDivs = document.getElementsByClassName('dog-1-stats')[3]
-    for(let i = 1; i <= 10; i ++) {
-      if (i <= this.poopy) {
-        poopyDivs.children[i].style.height = "20px"
-      } else {
-        poopyDivs.children[i].style.height = "5px"
-      }
-    }
+    this.renderTenDivs('poopy', 3)
+    this.renderStatBars('poopy', 3)
   }
 
   renderDogPipi() {
     document.body.innerHTML += `<div class="dog-1-stats"> <p class="pipi">Pee</p>
-      <div class="pipi-bar-1"></div>
-      <div class="pipi-bar-2"></div>
-      <div class="pipi-bar-3"></div>
-      <div class="pipi-bar-4"></div>
-      <div class="pipi-bar-5"></div>
-      <div class="pipi-bar-6"></div>
-      <div class="pipi-bar-7"></div>
-      <div class="pipi-bar-8"></div>
-      <div class="pipi-bar-9"></div>
-      <div class="pipi-bar-10"></div>
     </div>`
-
-    this.renderDogPipiBars()
-  }
-
-  renderDogPipiBars() {
-    let pipiDivs = document.getElementsByClassName('dog-1-stats')[4]
-    for(let i = 1; i <= 10; i ++) {
-      if (i <= this.pipi) {
-        pipiDivs.children[i].style.height = "20px"
-      } else {
-        pipiDivs.children[i].style.height = "5px"
-      }
-    }
+    this.renderTenDivs('pipi', 4)
+    this.renderStatBars('pipi', 4)
   }
 
   dogMovingAround() {
@@ -328,7 +255,6 @@ class Dog {
     }
   }
 
-
   makeMoreThirsty() {
     if(this.thirst > 1) {
       this.thirst -= 1
@@ -400,6 +326,5 @@ class Dog {
     })
     document.body.append(div)
   }
-
 
 }
