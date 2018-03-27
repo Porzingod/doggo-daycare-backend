@@ -27,28 +27,13 @@ class Dog {
     })
   }
 
-  // <div class="dog-option-feed" style="position: absolute; top: 65%; right: 30%">
-  //   <button id="feed-dog" style="width: 60px;">Feed</button>
-  // </div>
-  // <div class="dog-option-pet" style="position: absolute; top: 75%; right: 46%">
-  //   <button id="pet-dog" style="width: 60px;">Pet</button>
-  // </div>
-  // <div class="dog-option-hydrate" style="position: absolute; top: 65%; right: 62%">
-  //   <button id="hydrate-dog" style="width: 60px;">Hydrate</button>
-  // </div>
   renderOneDog() {
-<<<<<<< HEAD
-    document.body.innerHTML = `<div id="doggo" style="position: absolute; top: 50%; left: 50%; width: 250px; height: 200px; margin-top: -100px; margin-left: -150px">
+    document.body.innerHTML = `<div class="hidden" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 250px; height: 200px; margin-top: -100px; margin-left: -150px">
       <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
       <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
-      <button id="pet-dog" style="visibility: visible; position: absolute; top: 100%; left: 50%; margin-left: -16px; margin-top: -25px">Pet</button>
-      <button id="feed-dog" style="visibility: visible; position: absolute; top: 50%; margin-top: -5px">Feed</button>
-      <button id="hydrate-dog" style="visibility: visible; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -42px">Feed</button>
-=======
-    document.body.innerHTML = `<div user_id='${this.id}' id="doggo">
-      <p class="only-dog-name" style="position: absolute; top: 50%; right: 50%; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
-        <img class="annoying-dog only-dog" style="position: absolute; top: 65%; right: 50%;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
->>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
+      <button id="pet-dog" style="visibility: hidden; position: absolute; top: 100%; left: 50%; margin-left: -16px; margin-top: -25px">Pet</button>
+      <button id="feed-dog" style="visibility: hidden; position: absolute; top: 50%; margin-top: -5px">Feed</button>
+      <button id="hydrate-dog" style="visibility: hidden; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -42px">Hydrate</button>
     </div>`
     this.renderDogStats()
   }
@@ -61,41 +46,25 @@ class Dog {
     this.renderDogPipi()
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
-<<<<<<< HEAD
-    // annoyingDog.addEventListener('click', function(event) {
-    //   let div = document.createElement('div')
-    //   div.innerHTML = `<ul>
-    //     <li><button type="button" id="pet-dog">Pet</button></li>
-    //     <li><button type="button" id="feed-dog">Feed</button></li>
-    //     <li><button type="button" id="hydrate-dog">Hydrate</button></li>
-    //   </ul>`
-    //   // div.querySelectorAll('button')[0].addEventListener('click', function(event){
-    //   //
-    //   // })
-    //   // div.querySelectorAll('button')[1].addEventListener('click')
-    //   // div.querySelectorAll('button')[2].addEventListener('click')
-    //   document.getElementById('doggo').append(div)
-    // })
-    // setInterval(this.dogMovingAround, 250)
-    setInterval(this.makeLessHappy.bind(this), 1000)
-    setInterval(this.makeMoreHungry.bind(this), 1000)
-    setInterval(this.makeMoreThirsty.bind(this), 1000)
-=======
+
     annoyingDog.addEventListener('click', function(event) {
-      if(document.getElementsByClassName('all-buttons').length === 0) {
-        let div = document.createElement('div')
+      let petDogBtn = document.getElementById('pet-dog')
+      let feedDogBtn = document.getElementById('feed-dog')
+      let hydrateDogBtn = document.getElementById('hydrate-dog')
+      if(document.getElementsByClassName('hidden').length === 1) {
         let userId = event.target.parentElement.getAttribute('user_id')
-        div.innerHTML = `<div class="all-buttons"><ul>
-          <li><button type="button" user_id='${userId}' id="pet-dog">Pet</button></li>
-          <li><button type="button" user_id='${userId}' id="feed-dog">Feed</button></li>
-          <li><button type="button" user_id='${userId}' id="hydrate-dog">Hydrate</button></li>
-        </div></ul>`
-        document.getElementById('doggo').append(div)
-        document.getElementById('pet-dog').addEventListener('click', makeMoreHappy)
-        document.getElementById('feed-dog').addEventListener('click', makeLessHungry)
-        document.getElementById('hydrate-dog').addEventListener('click', makeLessThirsty)
+        petDogBtn.style.visibility = 'visible'
+        feedDogBtn.style.visibility = 'visible'
+        hydrateDogBtn.style.visibility = 'visible'
+        petDogBtn.addEventListener('click', makeMoreHappy)
+        feedDogBtn.addEventListener('click', makeLessHungry)
+        hydrateDogBtn.addEventListener('click', makeLessThirsty)
+        document.getElementsByClassName('hidden')[0].setAttribute('class', 'visible')
       } else {
-        document.getElementsByClassName('all-buttons')[0].parentNode.innerHTML = ""
+        document.getElementsByClassName('visible')[0].setAttribute('class', 'hidden')
+        petDogBtn.style.visibility = 'hidden'
+        feedDogBtn.style.visibility = 'hidden'
+        hydrateDogBtn.style.visibility = 'hidden'
       }
     })
 
@@ -131,12 +100,15 @@ class Dog {
       }
     }
 
-    setInterval(this.dogMovingAround, 250)
-    setInterval(this.makeLessHappy.bind(this), 20000)
-    setInterval(this.makeMoreHungry.bind(this), 20000)
-    setInterval(this.makeMoreThirsty.bind(this), 20000)
->>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
-    // setInterval(this.makeMorePoopy.bind(this), 1000)
+    // setInterval(this.dogMovingAround, 500)
+    let happyInterval = Math.floor(Math.random() * 5000) + 2000
+    let hungryInterval = Math.floor(Math.random() * 5000) + 2000
+    let thirstyInterval = Math.floor(Math.random() * 5000) + 2000
+    debugger
+    setInterval(this.makeLessHappy.bind(this), happyInterval)
+    setInterval(this.makeMoreHungry.bind(this), hungryInterval)
+    setInterval(this.makeMoreThirsty.bind(this), thirstyInterval)
+
   }
 
   renderDogHappiness() {
