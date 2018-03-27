@@ -9,6 +9,12 @@ class Api::V1::DogsController < ApplicationController
     render json: @dog
   end
 
+  def update
+    @dog = Dog.find(params[:id])
+    @dog.update(dog_params)
+    render json: @dog
+  end
+
   private
 
   def dog_params

@@ -11,9 +11,23 @@ body {
 }
 
 #sign-up-btn {
-  
+
 }
 
 #log-in-form {
 
+}
+
+#poop {
+  position: absolute;
+  background-color: sienna;
+  width: 50px;
+  height: 50px;
+}
+
+#pee {
+  position: absolute;
+  background-color: yellow;
+  width: 50px;
+  height: 50px;
 }
