@@ -48,17 +48,18 @@ class Dog {
     annoyingDog.addEventListener('click', function(event) {
       if(document.getElementsByClassName('all-buttons').length === 0) {
         let div = document.createElement('div')
-        div.setAttribute('class', 'all-buttons')
         let userId = event.target.parentElement.getAttribute('user_id')
-        div.innerHTML = `<ul>
+        div.innerHTML = `<div class="all-buttons"><ul>
           <li><button type="button" user_id='${userId}' id="pet-dog">Pet</button></li>
           <li><button type="button" user_id='${userId}' id="feed-dog">Feed</button></li>
           <li><button type="button" user_id='${userId}' id="hydrate-dog">Hydrate</button></li>
-        </ul>`
+        </div></ul>`
         document.getElementById('doggo').append(div)
         document.getElementById('pet-dog').addEventListener('click', makeMoreHappy)
         document.getElementById('feed-dog').addEventListener('click', makeLessHungry)
         document.getElementById('hydrate-dog').addEventListener('click', makeLessThirsty)
+      } else {
+        document.getElementsByClassName('all-buttons')[0].parentNode.innerHTML = ""
       }
     })
 
