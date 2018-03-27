@@ -27,13 +27,29 @@ class Dog {
     })
   }
 
-
+  // <div class="dog-option-feed" style="position: absolute; top: 65%; right: 30%">
+  //   <button id="feed-dog" style="width: 60px;">Feed</button>
+  // </div>
+  // <div class="dog-option-pet" style="position: absolute; top: 75%; right: 46%">
+  //   <button id="pet-dog" style="width: 60px;">Pet</button>
+  // </div>
+  // <div class="dog-option-hydrate" style="position: absolute; top: 65%; right: 62%">
+  //   <button id="hydrate-dog" style="width: 60px;">Hydrate</button>
+  // </div>
   renderOneDog() {
+<<<<<<< HEAD
+    document.body.innerHTML = `<div id="doggo" style="position: absolute; top: 50%; left: 50%; width: 250px; height: 200px; margin-top: -100px; margin-left: -150px">
+      <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
+      <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
+      <button id="pet-dog" style="visibility: visible; position: absolute; top: 100%; left: 50%; margin-left: -16px; margin-top: -25px">Pet</button>
+      <button id="feed-dog" style="visibility: visible; position: absolute; top: 50%; margin-top: -5px">Feed</button>
+      <button id="hydrate-dog" style="visibility: visible; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -42px">Feed</button>
+=======
     document.body.innerHTML = `<div user_id='${this.id}' id="doggo">
       <p class="only-dog-name" style="position: absolute; top: 50%; right: 50%; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
         <img class="annoying-dog only-dog" style="position: absolute; top: 65%; right: 50%;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
+>>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
     </div>`
-    document.getElementById('doggo1')
     this.renderDogStats()
   }
 
@@ -45,6 +61,26 @@ class Dog {
     this.renderDogPipi()
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
+<<<<<<< HEAD
+    // annoyingDog.addEventListener('click', function(event) {
+    //   let div = document.createElement('div')
+    //   div.innerHTML = `<ul>
+    //     <li><button type="button" id="pet-dog">Pet</button></li>
+    //     <li><button type="button" id="feed-dog">Feed</button></li>
+    //     <li><button type="button" id="hydrate-dog">Hydrate</button></li>
+    //   </ul>`
+    //   // div.querySelectorAll('button')[0].addEventListener('click', function(event){
+    //   //
+    //   // })
+    //   // div.querySelectorAll('button')[1].addEventListener('click')
+    //   // div.querySelectorAll('button')[2].addEventListener('click')
+    //   document.getElementById('doggo').append(div)
+    // })
+    // setInterval(this.dogMovingAround, 250)
+    setInterval(this.makeLessHappy.bind(this), 1000)
+    setInterval(this.makeMoreHungry.bind(this), 1000)
+    setInterval(this.makeMoreThirsty.bind(this), 1000)
+=======
     annoyingDog.addEventListener('click', function(event) {
       if(document.getElementsByClassName('all-buttons').length === 0) {
         let div = document.createElement('div')
@@ -99,6 +135,7 @@ class Dog {
     setInterval(this.makeLessHappy.bind(this), 20000)
     setInterval(this.makeMoreHungry.bind(this), 20000)
     setInterval(this.makeMoreThirsty.bind(this), 20000)
+>>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
     // setInterval(this.makeMorePoopy.bind(this), 1000)
   }
 
@@ -245,82 +282,55 @@ class Dog {
   }
 
   dogMovingAround() {
-    let dogName = document.getElementsByClassName('only-dog-name')[0]
-    let dogImg = document.getElementsByClassName('only-dog')[0]
+    let doggo = document.getElementById('doggo')
+    let doggoTop
+    let doggoLeft
 
-    let dogNameTop
-    if (dogName.style.top.length === 3) {
-      dogNameTop = parseInt(dogName.style.top.slice(0, 2))
-    } else if (dogName.style.top.length === 2) {
-      dogNameTop = parseInt(dogName.style.top.slice(0, 1))
-    } else if (dogName.style.top.length === 4) {
-      dogNameTop = parseInt(dogName.style.top.slice(0, 3))
+    if (doggo.style.top.length === 3){
+      doggoTop = parseInt(doggo.style.top.slice(0, 2))
+    } else if (doggo.style.top.length === 2) {
+      doggoTop = parseInt(doggo.style.top.slice(0, 1))
+    } else if (doggo.style.top.length === 4) {
+      doggoTop = parseInt(doggo.style.top.slice(0, 3))
     }
 
-    let dogNameRight
-    if (dogName.style.right.length === 3) {
-      dogNameRight = parseInt(dogName.style.right.slice(0, 2))
-    } else if (dogName.style.right.length === 2) {
-      dogNameRight = parseInt(dogName.style.right.slice(0, 1))
-    } else if (dogName.style.right.length === 4) {
-      dogNameRight = parseInt(dogName.style.right.slice(0, 3))
+    if (doggo.style.left.length === 3) {
+      doggoLeft = parseInt(doggo.style.left.slice(0, 2))
+    } else if (doggo.style.left.length === 2) {
+      doggoLeft = parseInt(doggo.style.left.slice(0, 1))
+    } else if (doggo.style.left.length === 4) {
+      doggoLeft = parseInt(doggo.style.left.slice(0, 3))
     }
 
-    let dogImgTop
-    if (dogImg.style.top.length === 3) {
-      dogImgTop = parseInt(dogImg.style.top.slice(0, 2))
-    } else if (dogImg.style.top.length === 2) {
-      dogImgTop = parseInt(dogImg.style.top.slice(0, 1))
-    } else if (dogImg.style.top.length === 4) {
-      dogImgTop = parseInt(dogImg.style.top.slice(0, 3))
-    }
-
-    let dogImgRight
-    if (dogImg.style.right.length === 3) {
-      dogImgRight = parseInt(dogImg.style.right.slice(0, 2))
-    } else if (dogImg.style.right.length === 2) {
-      dogImgRight = parseInt(dogImg.style.right.slice(0, 1))
-    } else if (dogImg.style.right.length === 4) {
-      dogImgRight = parseInt(dogImg.style.right.slice(0, 3))
-    }
-
-    if (dogNameTop <= 10) {
+    if (doggoTop <= 15) {
       // move down if dog reaches top
-      dogName.style.top = `${dogNameTop + 2}%`
-      dogImg.style.top = `${dogImgTop + 2}%`
-    } else if (dogNameTop >= 70) {
+      doggo.style.top = `${doggoTop + 2}%`
+    } else if (doggoTop >= 85) {
       // move up if dog reaches bottom
-      dogName.style.top = `${dogNameTop - 2}%`
-      dogImg.style.top = `${dogImgTop - 2}%`
+      doggo.style.top = `${doggoTop - 2}%`
     } else {
       if (Math.random() >= .5) {
         // move up
-        dogName.style.top = `${dogNameTop + 2}%`
-        dogImg.style.top = `${dogImgTop + 2}%`
+        doggo.style.top = `${doggoTop + 2}%`
       } else {
         // move down
-        dogName.style.top = `${dogNameTop - 2}%`
-        dogImg.style.top = `${dogImgTop - 2}%`
+        doggo.style.top = `${doggoTop - 2}%`
       }
     }
 
-    if (dogNameRight <= 14) {
+    if (doggoLeft >= 84) {
       // move left if dog reaches right
-      dogName.style.right = `${dogNameRight + 2}%`
-      dogImg.style.right = `${dogImgRight + 2}%`
-    } else if (dogNameRight >= 94) {
+      doggo.style.left = `${doggoLeft - 2}%`
+    } else if (doggoLeft <= 24) {
       // move right if dog reaches left
-      dogName.style.right = `${dogNameRight - 2}%`
-      dogImg.style.right = `${dogImgRight - 2}%`
+      doggo.style.left = `${doggoLeft + 2}%`
     } else {
       if (Math.random() >= .5) {
         // move left
-        dogName.style.right = `${dogNameRight + 2}%`
-        dogImg.style.right = `${dogImgRight + 2}%`
+        doggo.style.left = `${doggoLeft - 2}%`
       } else {
         // move right
-        dogName.style.right = `${dogNameRight - 2}%`
-        dogImg.style.right = `${dogImgRight - 2}%`
+        doggo.style.left = `${doggoLeft + 2}%`
       }
     }
   }
