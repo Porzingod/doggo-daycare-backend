@@ -44,6 +44,10 @@ class Dog {
     this.renderDogPoopy()
     this.renderDogPipi()
     setInterval(this.dogMovingAround, 250)
+    setInterval(this.makeLessHappy.bind(this), 1000)
+    setInterval(this.makeMoreHungry.bind(this), 1000)
+    setInterval(this.makeMoreThirsty.bind(this), 1000)
+
   }
 
   renderDogHappiness() {
@@ -60,13 +64,19 @@ class Dog {
       <div class="heart heart-10"></div>
     </div>`
 
-    //// move into separate
+    this.renderDogHappinessBars()
+  }
+
+  renderDogHappinessBars() {
     let happinessDivs = document.getElementsByClassName('dog-1-stats')[0]
 
-    for(let i = 1; i <= this.happiness; i ++) {
-      happinessDivs.children[i].style.transform = "rotate(-45deg)"
+    for(let i = 1; i <= 10; i ++) {
+      if (i <= this.happiness) {
+        happinessDivs.children[i].style.transform = "rotate(-45deg)"
+      } else {
+        happinessDivs.children[i].style.transform = "rotate(-45deg) scale(.4)"
+      }
     }
-    //// and for the others
   }
 
   renderDogHunger() {
@@ -83,6 +93,10 @@ class Dog {
       <div class="hunger-bar-10"></div>
     </div>`
 
+    this.renderDogHungerBars()
+  }
+
+  renderDogHungerBars() {
     let hungerDivs = document.getElementsByClassName('dog-1-stats')[1]
 
     for(let i = 1; i <= this.hunger; i ++) {
@@ -105,6 +119,10 @@ class Dog {
       <div class="thirst-bar-10"></div>
     </div>`
 
+    this.renderDogThirstBars()
+  }
+
+  renderDogThirstBars() {
     let thirstDivs = document.getElementsByClassName('dog-1-stats')[2]
 
     for(let i = 1; i <= this.thirst; i ++) {
@@ -126,7 +144,10 @@ class Dog {
       <div class="poopy-bar-9"></div>
       <div class="poopy-bar-10"></div>
     </div>`
+    this.renderDogPoopyBars()
+  }
 
+  renderDogPoopyBars() {
     let poopyDivs = document.getElementsByClassName('dog-1-stats')[3]
 
     for(let i = 1; i <= this.poopy; i ++) {
@@ -135,7 +156,6 @@ class Dog {
   }
 
   renderDogPipi() {
-
     document.body.innerHTML += `<div class="dog-1-stats"> <p class="pipi">Peepy</p>
       <div class="pipi-bar-1"></div>
       <div class="pipi-bar-2"></div>
@@ -149,13 +169,16 @@ class Dog {
       <div class="pipi-bar-10"></div>
     </div>`
 
+    this.renderDogPipiBars()
+  }
+
+  renderDogPipiBars() {
     let pipiDivs = document.getElementsByClassName('dog-1-stats')[4]
 
     for(let i = 1; i <= this.pipi; i ++) {
       pipiDivs.children[i].style.height = "20px"
     }
   }
-
 
   dogMovingAround() {
     let dogName = document.getElementsByClassName('only-dog-name')[0]
@@ -236,6 +259,38 @@ class Dog {
         dogImg.style.right = `${dogImgRight - 2}%`
       }
     }
-
   }
+
+  ///// set interval update dog's status. AUTOMATIC
+  makeLessHappy() {
+    console.log(this.happiness)
+    if (this.happiness > 1) {
+      this.happiness -= 1
+      this.renderDogHappinessBars()
+    }
+  }
+
+  makeMoreHungry() {
+    if (this.hunger < 10) {
+      this.hunger += 1
+      this.renderDogHungerBars()
+    }
+  }
+
+  makeMoreThirsty() {
+    if (this.thirst < 10) {
+      this.thirst += 1
+      this.renderDogThirstBars()
+    }
+  }
+  ///// Automatic but conditional
+  goPoopy() {}
+  goPipi() {}
+  ///// interactive actions
+  makeMoreHappy() {}
+  makeLessHungry() {}
+  makeLessThirsty() {}
+  makeMorePoopy() {}
+  makeMorePipi() {}
+
 }
