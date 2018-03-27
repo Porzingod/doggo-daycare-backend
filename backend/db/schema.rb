@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20180326172733) do
     t.string "name"
     t.integer "user_id"
     t.string "color"
-    t.integer "happiness"
-    t.integer "hunger"
-    t.integer "poopy"
-    t.integer "pipi"
-    t.integer "thirst"
+    t.integer "happiness", default: 5
+    t.integer "hunger", default: 5
+    t.integer "poopy", default: 5
+    t.integer "pipi", default: 5
+    t.integer "thirst", default: 5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
