@@ -8,18 +8,17 @@ body {
 }
 
 .only-dog {
-  position: absolute;
+  /* position: absolute;
   top: 65%;
-  right: 50%;
+  right: 50%; */
 }
 
 .only-dog-name {
-  color: white;
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   right: 50%;
   text-align: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P', cursive; */
 }
 
 .dog-1-stats {

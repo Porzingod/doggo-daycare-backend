@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function renderOneDog(dog) {
-    document.body.innerHTML = `<div id="doggo1">
-      <p class="only-dog-name">${dog.name}</p>
-        <img class="annoying-dog only-dog" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
+    document.body.innerHTML = `<div id="doggo">
+      <p class="only-dog-name" style="position: absolute; top: 50%; right: 50%; text-align: center; font-family: 'Press Start 2P', cursive;">${dog.name}</p>
+        <img class="annoying-dog only-dog" style="position: absolute; top: 65%; right: 50%;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
     </div>`
     document.getElementById('doggo1')
     renderDogStats(dog)
@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     renderDogThirst(dog)
     renderDogPoopy(dog)
     renderDogPipi(dog)
+    setInterval(dogMovingAround, 250)
   }
 
   function renderDogHappiness(dog) {
@@ -186,5 +187,88 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   document.getElementById('sign-up-btn')
+
+  function dogMovingAround() {
+    let dogName = document.getElementsByClassName('only-dog-name')[0]
+    let dogImg = document.getElementsByClassName('only-dog')[0]
+
+    let dogNameTop
+    if (dogName.style.top.length === 3) {
+      dogNameTop = parseInt(dogName.style.top.slice(0, 2))
+    } else if (dogName.style.top.length === 2) {
+      dogNameTop = parseInt(dogName.style.top.slice(0, 1))
+    } else if (dogName.style.top.length === 4) {
+      dogNameTop = parseInt(dogName.style.top.slice(0, 3))
+    }
+
+    let dogNameRight
+    if (dogName.style.right.length === 3) {
+      dogNameRight = parseInt(dogName.style.right.slice(0, 2))
+    } else if (dogName.style.right.length === 2) {
+      dogNameRight = parseInt(dogName.style.right.slice(0, 1))
+    } else if (dogName.style.right.length === 4) {
+      dogNameRight = parseInt(dogName.style.right.slice(0, 3))
+    }
+
+    let dogImgTop
+    if (dogImg.style.top.length === 3) {
+      dogImgTop = parseInt(dogImg.style.top.slice(0, 2))
+    } else if (dogImg.style.top.length === 2) {
+      dogImgTop = parseInt(dogImg.style.top.slice(0, 1))
+    } else if (dogImg.style.top.length === 4) {
+      dogImgTop = parseInt(dogImg.style.top.slice(0, 3))
+    }
+
+    let dogImgRight
+    if (dogImg.style.right.length === 3) {
+      dogImgRight = parseInt(dogImg.style.right.slice(0, 2))
+    } else if (dogImg.style.right.length === 2) {
+      dogImgRight = parseInt(dogImg.style.right.slice(0, 1))
+    } else if (dogImg.style.right.length === 4) {
+      dogImgRight = parseInt(dogImg.style.right.slice(0, 3))
+    }
+
+    if (dogNameTop <= 10) {
+      // move down if dog reaches top
+      dogName.style.top = `${dogNameTop + 2}%`
+      dogImg.style.top = `${dogImgTop + 2}%`
+    } else if (dogNameTop >= 70) {
+      // move up if dog reaches bottom
+      dogName.style.top = `${dogNameTop - 2}%`
+      dogImg.style.top = `${dogImgTop - 2}%`
+    } else {
+      if (Math.random() >= .5) {
+        // move up
+        dogName.style.top = `${dogNameTop + 2}%`
+        dogImg.style.top = `${dogImgTop + 2}%`
+      } else {
+        // move down
+        dogName.style.top = `${dogNameTop - 2}%`
+        dogImg.style.top = `${dogImgTop - 2}%`
+      }
+    }
+
+    if (dogNameRight <= 14) {
+      // move left if dog reaches right
+      dogName.style.right = `${dogNameRight + 2}%`
+      dogImg.style.right = `${dogImgRight + 2}%`
+    } else if (dogNameRight >= 94) {
+      // move right if dog reaches left
+      dogName.style.right = `${dogNameRight - 2}%`
+      dogImg.style.right = `${dogImgRight - 2}%`
+    } else {
+      if (Math.random() >= .5) {
+        // move left
+        dogName.style.right = `${dogNameRight + 2}%`
+        dogImg.style.right = `${dogImgRight + 2}%`
+      } else {
+        // move right
+        dogName.style.right = `${dogNameRight - 2}%`
+        dogImg.style.right = `${dogImgRight - 2}%`
+      }
+    }
+
+    console.log("moved")
+  }
   /////
 })

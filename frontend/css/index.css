@@ -1,3 +1,19 @@
 body {
   color: white;
 }
+
+#doggo-camp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -173px;
+  margin-top: -59px;
+}
+
+#sign-up-btn {
+  
+}
+
+#log-in-form {
+
+}
