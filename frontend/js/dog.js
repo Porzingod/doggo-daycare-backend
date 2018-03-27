@@ -29,12 +29,14 @@ class Dog {
 
   renderOneDog() {
     document.body.innerHTML = `<div class="hidden" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 220px; margin-top: -100px; margin-left: -150px">
-      <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive; font-size: 30px;">${this.name.substring(0,10)}</p>
+      <p class="only-dog-name" style="position: absolute; left: 50%; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; text-align: center; font-family: 'Press Start 2P', cursive; font-size: 30px;">${this.name.substring(0,10)}</p>
       <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
       <button id="pet-dog" style="visibility: hidden; position: absolute; top: 100%; left: 50%; margin-left: -24px; margin-top: -30px; font-size:20px; font-weight: bold;">Pet</button>
       <button id="feed-dog" style="visibility: hidden; position: absolute; top: 50%; margin-top: -5px; font-size:20px; font-weight: bold;">Feed</button>
       <button id="hydrate-dog" style="visibility: hidden; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -65px; font-size:20px; font-weight: bold;">Hydrate</button>
     </div>`
+    let dogName = document.getElementsByClassName('only-dog-name')[0]
+    dogName.style.marginLeft = `-${dogName.offsetWidth/2}px`
     this.renderDogStats()
   }
 
