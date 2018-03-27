@@ -37,12 +37,18 @@ class Dog {
   //   <button id="hydrate-dog" style="width: 60px;">Hydrate</button>
   // </div>
   renderOneDog() {
+<<<<<<< HEAD
     document.body.innerHTML = `<div id="doggo" style="position: absolute; top: 50%; left: 50%; width: 250px; height: 200px; margin-top: -100px; margin-left: -150px">
       <p class="only-dog-name" style="position: relative; margin: 0px; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
       <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
       <button id="pet-dog" style="visibility: visible; position: absolute; top: 100%; left: 50%; margin-left: -16px; margin-top: -25px">Pet</button>
       <button id="feed-dog" style="visibility: visible; position: absolute; top: 50%; margin-top: -5px">Feed</button>
       <button id="hydrate-dog" style="visibility: visible; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -42px">Feed</button>
+=======
+    document.body.innerHTML = `<div user_id='${this.id}' id="doggo">
+      <p class="only-dog-name" style="position: absolute; top: 50%; right: 50%; text-align: center; font-family: 'Press Start 2P', cursive;">${this.name}</p>
+        <img class="annoying-dog only-dog" style="position: absolute; top: 65%; right: 50%;" src="https://i.ytimg.com/vi/oUYPdBp4-zg/maxresdefault.jpg" alt="Annoying Dog">
+>>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
     </div>`
     this.renderDogStats()
   }
@@ -55,6 +61,7 @@ class Dog {
     this.renderDogPipi()
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
+<<<<<<< HEAD
     // annoyingDog.addEventListener('click', function(event) {
     //   let div = document.createElement('div')
     //   div.innerHTML = `<ul>
@@ -73,6 +80,61 @@ class Dog {
     setInterval(this.makeLessHappy.bind(this), 1000)
     setInterval(this.makeMoreHungry.bind(this), 1000)
     setInterval(this.makeMoreThirsty.bind(this), 1000)
+=======
+    annoyingDog.addEventListener('click', function(event) {
+      if(document.getElementsByClassName('all-buttons').length === 0) {
+        let div = document.createElement('div')
+        div.setAttribute('class', 'all-buttons')
+        let userId = event.target.parentElement.getAttribute('user_id')
+        div.innerHTML = `<ul>
+          <li><button type="button" user_id='${userId}' id="pet-dog">Pet</button></li>
+          <li><button type="button" user_id='${userId}' id="feed-dog">Feed</button></li>
+          <li><button type="button" user_id='${userId}' id="hydrate-dog">Hydrate</button></li>
+        </ul>`
+        document.getElementById('doggo').append(div)
+        document.getElementById('pet-dog').addEventListener('click', makeMoreHappy)
+        document.getElementById('feed-dog').addEventListener('click', makeLessHungry)
+        document.getElementById('hydrate-dog').addEventListener('click', makeLessThirsty)
+      }
+    })
+
+    const makeMoreHappy = (event) => {
+      let userId = event.target.getAttribute('user_id')
+      if (this.happiness < 10) {
+        this.happiness += 1
+        let happyObject = {happiness: this.happiness}
+        this.updateDog(happyObject)
+        this.renderDogHappinessBars()
+      }
+    }
+
+    const makeLessHungry = (event) => {
+      let userId = event.target.getAttribute('user_id')
+      if (this.hunger > 1) {
+        this.hunger -= 1
+        let hungerObject = {hunger: this.hunger}
+        this.updateDog(hungerObject)
+        this.renderDogHungerBars()
+        this.makeMorePoopy()
+      }
+    }
+
+    const makeLessThirsty = (event) => {
+      let userId = event.target.getAttribute('user_id')
+      if(this.thirst > 1) {
+        this.thirst -= 1
+        let thirstObject = {thirst: this.thirst}
+        this.updateDog(thirstObject)
+        this.renderDogThirstBars()
+        this.makeMorePipi()
+      }
+    }
+
+    setInterval(this.dogMovingAround, 250)
+    setInterval(this.makeLessHappy.bind(this), 20000)
+    setInterval(this.makeMoreHungry.bind(this), 20000)
+    setInterval(this.makeMoreThirsty.bind(this), 20000)
+>>>>>>> 8cb2d117c51522caf44818aa7d59cf315bf42c47
     // setInterval(this.makeMorePoopy.bind(this), 1000)
   }
 
@@ -124,8 +186,7 @@ class Dog {
 
   renderDogHungerBars() {
     let hungerDivs = document.getElementsByClassName('dog-1-stats')[1]
-
-    for(let i = 1; i <= this.hunger; i ++) {
+    for(let i = 1; i <= 10; i ++) {
       if (i <= this.hunger) {
         hungerDivs.children[i].style.height = "20px"
       } else {
@@ -154,9 +215,12 @@ class Dog {
 
   renderDogThirstBars() {
     let thirstDivs = document.getElementsByClassName('dog-1-stats')[2]
-
-    for(let i = 1; i <= this.thirst; i ++) {
-      thirstDivs.children[i].style.height = "20px"
+    for(let i = 1; i <= 10; i ++) {
+      if (i <= this.thirst) {
+        thirstDivs.children[i].style.height = "20px"
+      } else {
+        thirstDivs.children[i].style.height = "5px"
+      }
     }
   }
 
@@ -179,7 +243,6 @@ class Dog {
 
   renderDogPoopyBars() {
     let poopyDivs = document.getElementsByClassName('dog-1-stats')[3]
-
     for(let i = 1; i <= 10; i ++) {
       if (i <= this.poopy) {
         poopyDivs.children[i].style.height = "20px"
@@ -208,9 +271,12 @@ class Dog {
 
   renderDogPipiBars() {
     let pipiDivs = document.getElementsByClassName('dog-1-stats')[4]
-
-    for(let i = 1; i <= this.pipi; i ++) {
-      pipiDivs.children[i].style.height = "20px"
+    for(let i = 1; i <= 10; i ++) {
+      if (i <= this.pipi) {
+        pipiDivs.children[i].style.height = "20px"
+      } else {
+        pipiDivs.children[i].style.height = "5px"
+      }
     }
   }
 
@@ -315,7 +381,6 @@ class Dog {
       this.renderDogPoopyBars()
     }
   }
-  ///// Automatic but conditional
   goPoopy() {
     let div = document.createElement('div')
     div.setAttribute('id', 'poop')
@@ -337,11 +402,17 @@ class Dog {
     })
     document.body.append(div)
   }
-  ///// interactive actions
-  makeMoreHappy() {}
-  makeLessHungry() {}
-  makeLessThirsty() {}
-  // makeMorePoopy() {}
-  makeMorePipi() {}
+
+
+  makeMorePipi() {
+    if (this.pipi < 10) {
+      this.pipi += 1
+      this.renderDogPipiBars()
+    } else if (this.pipi === 10) {
+      this.goPipi()
+      this.pipi = 1
+      this.renderDogPipiBars()
+    }
+  }
 
 }
