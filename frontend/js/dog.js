@@ -10,7 +10,6 @@ class Dog {
     this.user_id = user_id
   }
 
-
   static createDog(userId, dogName) {
     let dogObject = {name: dogName, user_id: userId}
     fetch(`${base_url}/users/${userId}/dogs`, {
@@ -37,7 +36,9 @@ class Dog {
     </div>`
     let dogName = document.getElementsByClassName('only-dog-name')[0]
     dogName.style.marginLeft = `-${dogName.offsetWidth/2}px`
+
     this.renderDogStats()
+    this.statIntervals()
   }
 
   renderDogStats() {
@@ -48,25 +49,19 @@ class Dog {
     this.renderDogPipi()
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
-
     annoyingDog.addEventListener('click', function(event) {
-      let petDogBtn = document.getElementById('pet-dog')
-      let feedDogBtn = document.getElementById('feed-dog')
-      let hydrateDogBtn = document.getElementById('hydrate-dog')
       if(document.getElementsByClassName('hidden').length === 1) {
         let userId = event.target.parentElement.getAttribute('user_id')
-        petDogBtn.style.visibility = 'visible'
-        feedDogBtn.style.visibility = 'visible'
-        hydrateDogBtn.style.visibility = 'visible'
-        petDogBtn.addEventListener('click', makeMoreHappy)
-        feedDogBtn.addEventListener('click', makeLessHungry)
-        hydrateDogBtn.addEventListener('click', makeLessThirsty)
+        let buttons = document.querySelectorAll('button')
+        buttons.forEach(button => button.style.visibility = 'visible')
+        buttons[0].addEventListener('click', makeMoreHappy)
+        buttons[1].addEventListener('click', makeLessHungry)
+        buttons[2].addEventListener('click', makeLessThirsty)
         document.getElementsByClassName('hidden')[0].setAttribute('class', 'visible')
       } else {
         document.getElementsByClassName('visible')[0].setAttribute('class', 'hidden')
-        petDogBtn.style.visibility = 'hidden'
-        feedDogBtn.style.visibility = 'hidden'
-        hydrateDogBtn.style.visibility = 'hidden'
+        let buttons = document.querySelectorAll('button')
+        buttons.forEach(button => button.style.visibility = 'hidden')
       }
     })
 
@@ -86,7 +81,7 @@ class Dog {
         this.hunger += 1
         let hungerObject = {hunger: this.hunger}
         this.updateDog(hungerObject)
-        this.renderDogHungerBars()
+        this.renderStatBars('hunger', 1)
         this.makeMorePoopy()
       }
     }
@@ -97,20 +92,19 @@ class Dog {
         this.thirst += 1
         let thirstObject = {thirst: this.thirst}
         this.updateDog(thirstObject)
-        this.renderDogThirstBars()
+        this.renderStatBars('thirst', 2)
         this.makeMorePipi()
       }
     }
+  }
 
-    let happyInterval = Math.floor(Math.random() * 90000) + 40000
-    let hungryInterval = Math.floor(Math.random() * 90000) + 40000
-    let thirstyInterval = Math.floor(Math.random() * 90000) + 40000
+  statIntervals() {
     setInterval(this.dogMovingAround, 3000)
-    setInterval(this.makeLessHappy.bind(this), happyInterval)
-    setInterval(this.makeMoreHungry.bind(this), hungryInterval)
-    setInterval(this.makeMoreThirsty.bind(this), thirstyInterval)
-    setInterval(this.makeMorePoopy.bind(this), 1200000)
-    setInterval(this.makeMorePipi.bind(this), 1200000)
+    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 9000) + 4000)
+    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 9000) + 4000)
+    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 9000) + 4000)
+    setInterval(this.makeMorePoopy.bind(this), 12000)
+    setInterval(this.makeMorePipi.bind(this), 12000)
   }
 
   renderDogHappiness() {
@@ -251,7 +245,7 @@ class Dog {
       this.hunger -= 1
       let hungerObject = {hunger: this.hunger}
       this.updateDog(hungerObject)
-      this.renderDogHungerBars()
+      this.renderStatBars('hunger', 1)
     }
   }
 
@@ -260,7 +254,7 @@ class Dog {
       this.thirst -= 1
       let thirstObject = {thirst: this.thirst}
       this.updateDog(thirstObject)
-      this.renderDogThirstBars()
+      this.renderStatBars('thirst', 2)
     }
   }
 
@@ -269,13 +263,13 @@ class Dog {
       this.poopy += 1
       let poopyObject = {poopy: this.poopy}
       this.updateDog(poopyObject)
-      this.renderDogPoopyBars()
+      this.renderStatBars('poopy', 3)
     } else if (this.poopy === 10) {
       this.goPoopy()
       this.poopy = 1
       let poopyObject = {poopy: this.poopy}
       this.updateDog(poopyObject)
-      this.renderDogPoopyBars()
+      this.renderStatBars('poopy', 3)
     }
   }
 
@@ -284,13 +278,13 @@ class Dog {
       this.pipi += 1
       let pipiObject = {pipi: this.pipi}
       this.updateDog(pipiObject)
-      this.renderDogPipiBars()
+      this.renderStatBars('pipi', 4)
     } else if (this.pipi === 10) {
       this.goPipi()
       this.pipi = 1
       let pipiObject = {pipi: this.pipi}
       this.updateDog(pipiObject)
-      this.renderDogPipiBars()
+      this.renderStatBars('pipi', 4)
     }
   }
 
@@ -326,5 +320,4 @@ class Dog {
     })
     document.body.append(div)
   }
-
 }

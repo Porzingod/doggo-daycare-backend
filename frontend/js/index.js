@@ -1,4 +1,10 @@
 const base_url = 'http://localhost:3000/api/v1'
+
+window.addEventListener('beforeunload', function(event) {
+  debugger
+  alert('HI')
+})
+
 document.addEventListener("DOMContentLoaded", function(event) {
   const signUp = document.getElementById('sign-up-btn')
 
@@ -24,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       user.displayDogs()
     })
   }
-
 
   signUp.addEventListener('click', function(event) {
     document.body.innerHTML = ""
