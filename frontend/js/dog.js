@@ -128,12 +128,14 @@ class Dog {
   }
 
   statIntervals() {
+
     // setInterval(this.dogMovingAround, 3000)
     setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 1000) + 500)
     setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 1000) + 500)
     setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 1000) + 500)
     // setInterval(this.makeMorePoopy.bind(this), 12000)
     // setInterval(this.makeMorePipi.bind(this), 12000)
+    setInterval(this.updateDog.bind(this), 30000)
   }
 
   renderDogHappiness() {
@@ -308,20 +310,19 @@ class Dog {
     }
   }
 
-  // static closeWindow() {
-  //   window.addEventListener('beforeunload', function(event) {
-  //     debugger
-  //     let userId = document.getElementById('doggo').getAttribute('user_id')
-  //     fetch(`${base_url}/users/${userId}/dogs`)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       debugger
-  //     })
-  //   })
-  // }
-  //
+  static closeWindow() {
+    window.addEventListener('beforeunload', function(event) {
+      debugger
+      let userId = document.getElementById('doggo').getAttribute('user_id')
+      fetch(`${base_url}/users/${userId}/dogs`)
+      .then(res => res.json())
+      .then(json => {
+        debugger
+      })
+    })
+  }
+
   // static reloadWindow() {
-  //   debugger
   //   let keys = {}
   //   window.addEventListener('keydown', function(event) {
   //     if(event.keyCode === 82) {
@@ -335,8 +336,15 @@ class Dog {
   //     }
   //   })
   // }
-
-  updateDog(object) {
+  //
+  updateDog() {
+    let object = {
+      happiness: this.happiness,
+      hunger: this.hunger,
+      thirst: this.thirst,
+      poopy: this.poopy,
+      pipi: this.pipi
+    }
     fetch(`${base_url}/users/${this.user_id}/dogs/${this.id}`, {
       method: "PUT",
       body: JSON.stringify(object),
@@ -345,6 +353,11 @@ class Dog {
       }
     })
   }
+  // static confirmation() {
+  //   window.onbeforeunload = function() {
+  //       return true;
+  //   };
+  // }
 
   goPoopy() {
     let div = document.createElement('img')
