@@ -27,17 +27,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
       let foundUser = json.find(function(user) {
         return user.username === input
       })
-      let user = new User(foundUser.id, foundUser.username)
-      user.displayDogs()
+      if (foundUser === undefined) {
+        $('.ui.modal').modal('show');
+      } else {
+        let user = new User(foundUser.id, foundUser.username)
+        user.displayDogs()
+      }
     })
+    // debugger
   }
 
   signUp.addEventListener('click', function(event) {
     document.body.innerHTML = ""
     let form = document.createElement('form')
-    form.innerHTML = `<input type="text" placeholder="username">
-    <input type="text" placeholder="dog name">
-    <input type="submit" value="Create User">`
+    form.innerHTML = `<input type="text" placeholder="username" style="color:black;">
+    <input type="text" placeholder="dog name" style="color:black;">
+    <input type="submit" value="Create User" style="color:black;">`
     form.setAttribute('id', 'newUser')
     document.body.append(form)
     form.addEventListener('submit', User.createUser)
