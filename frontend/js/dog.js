@@ -163,6 +163,8 @@ class Dog {
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
       // ghostification(this)
+      renderMessage("YOUR DOG WILL DIE IF YOU DON'T TAKE CARE OF HIM", 'PLEASE CARE FOR YOUR DOG')
+      $('.ui.modal').modal('show');
       setTimeout(this.checkStats.bind(this), 10000)
     } //else {
     //   clearTimeout(ghostification)
@@ -193,6 +195,8 @@ class Dog {
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
       // ghostification(this)
+      renderMessage("YOUR DOG WILL DIE IF YOU DON'T TAKE CARE OF HIM", 'PLEASE CARE FOR YOUR DOG')
+      $('.ui.modal').modal('show');
       setTimeout(this.checkStats.bind(this), 10000)
     }// else {
     //   clearTimeout(ghostification)
