@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(username: "jason")
 User.create(username: "sarah")
-Dog.create(name: 'GabeDeDog', user_id: 1, happiness: 3, hunger: 4, thirst: 5, poopy: 6, pipi: 7 )
-Dog.create(name: 'LuckyShibe', user_id: 2, happiness: 5, hunger: 6, thirst: 7, poopy: 8, pipi: 9 )
+Dog.create(name: 'GabeDeDog', user_id: 1, happiness: 1, hunger: 4, thirst: 5, poopy: 6, pipi: 7, color: "rainbow")
+Dog.create(name: 'LuckyShibe', user_id: 2, happiness: 5, hunger: 6, thirst: 7, poopy: 8, pipi: 9, color: "aquamarine" )
