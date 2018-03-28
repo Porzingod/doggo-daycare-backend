@@ -6,6 +6,9 @@ window.addEventListener('beforeunload', function(event) {
 })
 
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  let annoyingDog = document.querySelector('.annoying-dog.only-dog')
+
   const signUp = document.getElementById('sign-up-btn')
 
   const form = document.getElementById('log-in-form')
