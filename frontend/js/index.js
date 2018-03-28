@@ -1,9 +1,8 @@
 const base_url = 'http://localhost:3000/api/v1'
 
-window.addEventListener('beforeunload', function(event) {
-  debugger
-  alert('HI')
-})
+Dog.closeWindow()
+Dog.reloadWindow()
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
