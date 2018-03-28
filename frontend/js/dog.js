@@ -147,9 +147,7 @@ class Dog {
       tenDivs.innerHTML += ` <div class="heart heart-${i}"></div>`
     }
     this.renderDogHappinessBars()
-    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      beginGhostification()
-    }
+
   }
 
   renderDogHappinessBars() {
@@ -161,6 +159,19 @@ class Dog {
       } else {
         happinessDivs.children[i].style.transform = "rotate(-45deg) scale(.4)"
       }
+
+    }
+    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
+      // ghostification(this)
+      setTimeout(this.checkStats.bind(this), 10000)
+    } //else {
+    //   clearTimeout(ghostification)
+    // }
+  }
+
+  checkStats() {
+    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
+      ghostification(this)
     }
   }
 
@@ -181,10 +192,11 @@ class Dog {
       }
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      ghostification(this)
-    } else {
-      clearTimeout(ghostification)
-    }
+      // ghostification(this)
+      setTimeout(this.checkStats.bind(this), 10000)
+    }// else {
+    //   clearTimeout(ghostification)
+    // }
   }
 
   renderDogHunger() {
