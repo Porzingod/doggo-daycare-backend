@@ -2,6 +2,10 @@ body {
   color: white;
 }
 
+h1 {
+  text-align: center;
+}
+
 #welcome {
   font-size: 5em;
 }
@@ -19,48 +23,53 @@ body {
 #log-in-input {
   width: 520.67px;
   text-align: center;
-  font-size: 1em;
+  font-size: 2em;
+  border-radius: 5px;
 }
 
 #log-in-btn {
   position: absolute;
-  width: 30%;
+  width: 40%;
   left: 50%;
-  margin-left: -78px;
+  margin-left: -105px;
   margin-top: 10px;
   font-size: 1em;
+  border-radius: 5px;
 }
 
 #sign-up-btn {
   position: absolute;
-  width: 30%;
-  margin-top: 50px;
-  font-size: .85em;
+  width: 40%;
+  margin-top: 60px;
+  font-size: 1em;
   left: 50%;
-  margin-left: -78px;
+  margin-left: -105px;
   border-radius: 5px;
 }
 
 #sign-up-username {
   width: 520.67px;
   text-align: center;
-  font-size: 1em;
+  font-size: 2em;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 #sign-up-dogname {
   width: 520.67px;
   text-align: center;
-  font-size: 1em;
+  font-size: 2em;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 #sign-up-submit {
   position: absolute;
-  width: 30%;
+  width: 40%;
   left: 50%;
   font-size: 1em;
-  margin-left: -78px;
+  margin-left: -105px;
+  border-radius: 5px;
 }
 
 #poop {
