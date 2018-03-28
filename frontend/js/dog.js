@@ -1,5 +1,5 @@
 class Dog {
-  constructor(id, name, happiness, hunger, thirst, poopy, pipi, user_id){
+  constructor(id, name, happiness, hunger, thirst, poopy, pipi, user_id, color){
     this.id = id
     this.name = name
     this.happiness = happiness
@@ -8,10 +8,19 @@ class Dog {
     this.poopy = poopy
     this.pipi = pipi
     this.user_id = user_id
+    this.color = color
   }
 
   static createDog(userId, dogName) {
-    let dogObject = {name: dogName, user_id: userId}
+    let colors = ["aquamarine", "chartreuse", "coral", "darkorchid", "deeppink", "pink", "red", "royalblue", "white", "yellow"]
+    let colorsRNG = []
+    colors.forEach(color => {
+      for(let i = 1; i <= 10; i ++) {
+        colorsRNG.push(color)
+      }
+    })
+    colorsRNG.push("rainbow")
+    let dogObject = {name: dogName, user_id: userId, color: colorsRNG[Math.floor(Math.random() * 100) + 0]}
     fetch(`${base_url}/users/${userId}/dogs`, {
       method: 'POST',
       body: JSON.stringify(dogObject),
@@ -21,15 +30,15 @@ class Dog {
     })
     .then(res => res.json())
     .then(json => {
-      let dog = new Dog(json.id, json.name, json.happiness, json.hunger, json.thirst, json.poopy, json.pipi, json.user_id)
+      let dog = new Dog(json.id, json.name, json.happiness, json.hunger, json.thirst, json.poopy, json.pipi, json.user_id, json.color)
       dog.renderOneDog()
     })
   }
 
   renderOneDog() {
     document.body.innerHTML = `<div class="hidden" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 220px; margin-top: -100px; margin-left: -150px">
-      <p class="only-dog-name" style="position: absolute; left: 50%; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; text-align: center; font-family: 'Press Start 2P', cursive; font-size: 30px;">${this.name.substring(0,10)}</p>
-      <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="images/alive/dog-white.jpg" alt="Annoying Dog">
+      <p class="only-dog-name" style="position: absolute; left: 50%; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; text-align: center; font-size: 30px;">${this.name.substring(0,10)}</p>
+      <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="images/alive/dog-${this.color}.jpg" alt="Annoying Dog">
       <button id="pet-dog" style="visibility: hidden; position: absolute; top: 100%; left: 50%; margin-left: -24px; margin-top: -30px; font-size:20px; font-weight: bold;">Pet</button>
       <button id="feed-dog" style="visibility: hidden; position: absolute; top: 50%; margin-top: -5px; font-size:20px; font-weight: bold;">Feed</button>
       <button id="hydrate-dog" style="visibility: hidden; position: absolute; top: 50%; left: 100%; margin-top: -5px; margin-left: -65px; font-size:20px; font-weight: bold;">Hydrate</button>
@@ -76,7 +85,24 @@ class Dog {
         let happyObject = {happiness: this.happiness}
         // this.updateDog(happyObject)
         this.renderDogHappinessBars()
+        setTimeout(function(){ document.body.append(heart(event, 1.5, 0, 5, 8)) }, 50);
+        setTimeout(function(){ document.body.append(heart(event, 2, -22.5, 9, 10)) }, 200);
+        setTimeout(function(){ document.body.append(heart(event, 3, -40, 16, 11)) }, 500);
+        setTimeout(function(){
+          let temps = document.getElementsByClassName('temp')
+          for(let i = 0; i <= temps.length; i) { temps[i].remove() }
+        }, 1000)
       }
+    }
+
+    const heart = (event, scale, rotate, x, y) => {
+      let div = document.createElement('div')
+      div.setAttribute('class', 'heart temp')
+      div.style.transform = `scale(${scale}) rotate(${rotate}deg)`
+      div.style.position = "absolute"
+      div.style.top = `${parseInt(event.target.parentNode.style.top) - x}%`
+      div.style.left = `${parseInt(event.target.parentNode.style.left) + y}%`
+      return div
     }
 
     const makeLessHungry = (event) => {
@@ -103,7 +129,7 @@ class Dog {
   }
 
   statIntervals() {
-    setInterval(this.dogMovingAround, 3000)
+    // setInterval(this.dogMovingAround, 3000)
     // setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 9000) + 4000)
     // setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 9000) + 4000)
     // setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 9000) + 4000)
@@ -182,24 +208,8 @@ class Dog {
 
   dogMovingAround() {
     let doggo = document.getElementById('doggo')
-    let doggoTop
-    let doggoLeft
-
-    if (doggo.style.top.length === 3){
-      doggoTop = parseInt(doggo.style.top.slice(0, 2))
-    } else if (doggo.style.top.length === 2) {
-      doggoTop = parseInt(doggo.style.top.slice(0, 1))
-    } else if (doggo.style.top.length === 4) {
-      doggoTop = parseInt(doggo.style.top.slice(0, 3))
-    }
-
-    if (doggo.style.left.length === 3) {
-      doggoLeft = parseInt(doggo.style.left.slice(0, 2))
-    } else if (doggo.style.left.length === 2) {
-      doggoLeft = parseInt(doggo.style.left.slice(0, 1))
-    } else if (doggo.style.left.length === 4) {
-      doggoLeft = parseInt(doggo.style.left.slice(0, 3))
-    }
+    let doggoTop = parseInt(doggo.style.top)
+    let doggoLeft = parseInt(doggo.style.left)
 
     if (doggoTop <= 15) {
       // move down if dog reaches top
