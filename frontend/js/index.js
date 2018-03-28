@@ -1,7 +1,10 @@
 const base_url = 'http://localhost:3000/api/v1'
 
+<<<<<<< HEAD
 // Dog.closeWindow()
 // Dog.reloadWindow()
+=======
+>>>>>>> 5cbe3307621107d926392726aaf08c7d046674bb
 // Dog.confirmation()
 
 
