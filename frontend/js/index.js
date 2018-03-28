@@ -33,14 +33,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   signUp.addEventListener('click', function(event) {
-    document.body.innerHTML = ""
+    let main = document.createElement('main')
+    main.setAttribute('id', 'doggo-camp')
+    main.innerHTML = '<h1 id="welcome">Doggo Daycare</h1>'
+    document.body.innerHTML = ''
     let form = document.createElement('form')
-    form.innerHTML = `<input type="text" placeholder="username">
-    <input type="text" placeholder="dog name">
-    <input type="submit" value="Create User">`
-    form.setAttribute('id', 'newUser')
-    document.body.append(form)
+    form.innerHTML = `<input id="sign-up-username" type="text" placeholder="username">
+    <div>
+      <input id="sign-up-dogname" type="text" placeholder="dog name">
+    </div>
+    <div>
+      <input id="sign-up-submit" type="submit" value="Adopt Doggo!">
+    </div>`
     form.addEventListener('submit', User.createUser)
+    main.append(form)
+    document.body.append(main)
   })
 
 
