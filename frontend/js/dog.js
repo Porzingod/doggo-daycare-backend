@@ -80,7 +80,7 @@ class Dog {
     const makeMoreHappy = (event) => {
       let userId = event.target.getAttribute('user_id')
       if (this.happiness < 10) {
-        this.happiness += 1
+        this.happiness += 2
         let happyObject = {happiness: this.happiness}
         // this.updateDog(happyObject)
         this.renderDogHappinessBars()
@@ -108,7 +108,7 @@ class Dog {
     const makeLessHungry = (event) => {
       let userId = event.target.getAttribute('user_id')
       if (this.hunger < 10) {
-        this.hunger += 1
+        this.hunger += 2
         let hungerObject = {hunger: this.hunger}
         // this.updateDog(hungerObject)
         this.renderStatBars('hunger', 1)
@@ -119,7 +119,7 @@ class Dog {
     const makeLessThirsty = (event) => {
       let userId = event.target.getAttribute('user_id')
       if(this.thirst < 10) {
-        this.thirst += 1
+        this.thirst += 2
         let thirstObject = {thirst: this.thirst}
         // this.updateDog(thirstObject)
         this.renderStatBars('thirst', 2)
@@ -131,9 +131,9 @@ class Dog {
   statIntervals() {
 
     // setInterval(this.dogMovingAround, 3000)
-    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 1000) + 500)
-    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 1000) + 500)
-    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 1000) + 500)
+    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 2000) + 1000)
+    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 2000) + 1000)
+    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 2000) + 1000)
     // setInterval(this.makeMorePoopy.bind(this), 12000)
     // setInterval(this.makeMorePipi.bind(this), 12000)
     setInterval(this.updateDog.bind(this), 30000)
@@ -296,11 +296,11 @@ class Dog {
 
   makeMorePoopy() {
     if (this.poopy < 10) {
-      this.poopy += 1
+      this.poopy += 3
       let poopyObject = {poopy: this.poopy}
       // this.updateDog(poopyObject)
       this.renderStatBars('poopy', 3)
-    } else if (this.poopy === 10) {
+    } else if (this.poopy >= 10) {
       this.goPoopy()
       this.poopy = 1
       let poopyObject = {poopy: this.poopy}
@@ -311,11 +311,11 @@ class Dog {
 
   makeMorePipi() {
     if (this.pipi < 10) {
-      this.pipi += 1
+      this.pipi += 3
       let pipiObject = {pipi: this.pipi}
       // this.updateDog(pipiObject)
       this.renderStatBars('pipi', 4)
-    } else if (this.pipi === 10) {
+    } else if (this.pipi >= 10) {
       this.goPipi()
       this.pipi = 1
       let pipiObject = {pipi: this.pipi}
