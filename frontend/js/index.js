@@ -1,7 +1,8 @@
 const base_url = 'http://localhost:3000/api/v1'
 
-Dog.closeWindow()
-Dog.reloadWindow()
+// Dog.closeWindow()
+// Dog.reloadWindow()
+// Dog.confirmation()
 
 
 document.addEventListener("DOMContentLoaded", function(event) {

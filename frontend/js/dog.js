@@ -129,12 +129,14 @@ class Dog {
   }
 
   statIntervals() {
+
     // setInterval(this.dogMovingAround, 3000)
     // setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 9000) + 4000)
     // setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 9000) + 4000)
     // setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 9000) + 4000)
     // setInterval(this.makeMorePoopy.bind(this), 12000)
     // setInterval(this.makeMorePipi.bind(this), 12000)
+    setInterval(this.updateDog.bind(this), 30000)
   }
 
   renderDogHappiness() {
@@ -314,23 +316,29 @@ class Dog {
     })
   }
 
-  static reloadWindow() {
-    debugger
-    let keys = {}
-    window.addEventListener('keydown', function(event) {
-      if(event.keyCode === 82) {
-        if(keys[91] || keys[17]){
-          debugger
-        }
-      } else if(event.keyCode === 91 || event.keyCode === 17) {
-        keys[event.keyCode] = 1
-      } else {
-        keys = {}
-      }
-    })
-  }
-
-  updateDog(object) {
+  // static reloadWindow() {
+  //   let keys = {}
+  //   window.addEventListener('keydown', function(event) {
+  //     if(event.keyCode === 82) {
+  //       if(keys[91] || keys[17]){
+  //         debugger
+  //       }
+  //     } else if(event.keyCode === 91 || event.keyCode === 17) {
+  //       keys[event.keyCode] = 1
+  //     } else {
+  //       keys = {}
+  //     }
+  //   })
+  // }
+  //
+  updateDog() {
+    let object = {
+      happiness: this.happiness,
+      hunger: this.hunger,
+      thirst: this.thirst,
+      poopy: this.poopy,
+      pipi: this.pipi
+    }
     fetch(`${base_url}/users/${this.user_id}/dogs/${this.id}`, {
       method: "PUT",
       body: JSON.stringify(object),
@@ -339,6 +347,11 @@ class Dog {
       }
     })
   }
+  // static confirmation() {
+  //   window.onbeforeunload = function() {
+  //       return true;
+  //   };
+  // }
 
   goPoopy() {
     let div = document.createElement('img')
