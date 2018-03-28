@@ -7,6 +7,25 @@ function getUsers() {
   .then(res => res.json())
 }
 
+function renderMessage(msg1, msg2) {
+  let div = document.createElement('div')
+  div.setAttribute('class', 'ui modal')
+  div.innerHTML = `<i class="close icon"></i>
+  <div class="header">
+  ERRRRORR
+  </div>
+  <div class="image content">
+  <div class="ui medium image">
+  <img src="https://static1.squarespace.com/static/51fbb364e4b0d35aeaac238d/t/51fc41c3e4b0c31f218cf18a/1375486404863/404-page-error.jpg">
+  </div>
+  <div class="description">
+  <div class="ui header" style="color:black;">${msg1}</div>
+  <p style="color:black;">${msg2}</p>
+  </div>
+  </div>`
+  document.body.prepend(div)
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
   let annoyingDog = document.querySelector('.annoying-dog.only-dog')
@@ -28,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return user.username === input
       })
       if (foundUser === undefined) {
+        renderMessage('THATS NOT A REAL NAME', 'PLEASE NEW NAME')
         $('.ui.modal').modal('show');
       } else {
         let user = new User(foundUser.id, foundUser.username)
@@ -35,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     })
   }
+
 
 
   signUp.addEventListener('click', function(event) {

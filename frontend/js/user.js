@@ -21,6 +21,7 @@ class User {
     let user = document.getElementById('sign-up-username').value
     let dog = document.getElementById('sign-up-dogname').value
     if(user === '' || dog === '') {
+      renderMessage('ALL FIELDS NEED TO BE FILLED IN', 'PLEASE FILL IN')
       $('.ui.modal').modal('show');
     } else {
       getUsers()
@@ -30,6 +31,7 @@ class User {
           return user.username === input
         })
         if (foundUser !== undefined) {
+          renderMessage('THAT USER NAME IS ALREADY TAKEN', 'CHOOSE A NEW USERNAME')
           $('.ui.modal').modal('show');
         } else {
           let userObject = {'username': user}
