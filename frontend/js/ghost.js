@@ -1,6 +1,6 @@
 const ghostification = (obj) => {
   // clearTimeout()
-  // debugger
+  debugger
   setTimeout(function() {
     document.querySelector('img').src = "images/dog-ghost.jpg"
     fetch(`${base_url}/users/${obj.user_id}/dogs/${obj.id}`, {
@@ -11,7 +11,7 @@ const ghostification = (obj) => {
       }
     })
     // document.querySelector('img').src = "images/dog-ghost.jpg"
-  }, 3000)
+  }, 10000)
   // setTimeout(function() {
   //   document.querySelector('img').src = "images/dead/dog-ghost.jpg"
   // }, 120000)
