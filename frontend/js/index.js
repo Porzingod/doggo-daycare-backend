@@ -2,6 +2,10 @@ const base_url = 'http://localhost:3000/api/v1'
 
 // Dog.confirmation()
 
+function getUsers() {
+  return fetch(`${base_url}/users`)
+  .then(res => res.json())
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -15,15 +19,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     findUser()
   })
 
-  function getUsers() {
-    return fetch(`${base_url}/users`)
-    .then(res => res.json())
-  }
 
   function findUser() {
     getUsers()
     .then(json => {
-      let input = document.getElementById('log-in-form').children[0].value
+      let input = document.getElementById('log-in-input').value
       let foundUser = json.find(function(user) {
         return user.username === input
       })
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         user.displayDogs()
       }
     })
-    // debugger
   }
+
 
   signUp.addEventListener('click', function(event) {
     let main = document.createElement('main')

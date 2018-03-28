@@ -18,20 +18,36 @@ class User {
 
   static createUser(event) {
     event.preventDefault()
-    let user = event.target.children[0].value
-    let userObject = {'username': user}
-    fetch(`${base_url}/users`, {
-      method: 'POST',
-      body: JSON.stringify(userObject),
-      headers: {
-        "Content-Type": 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(json => {
-      let dogName = document.querySelector('form')[1].value
-      Dog.createDog(json.id, dogName)
-    })
+    let user = document.getElementById('sign-up-username').value
+    let dog = document.getElementById('sign-up-dogname').value
+    if(user === '' || dog === '') {
+      $('.ui.modal').modal('show');
+    } else {
+      getUsers()
+      .then(json => {
+        let input = document.getElementById('sign-up-username').value
+        let foundUser = json.find(function(user) {
+          return user.username === input
+        })
+        if (foundUser !== undefined) {
+          $('.ui.modal').modal('show');
+        } else {
+          let userObject = {'username': user}
+          fetch(`${base_url}/users`, {
+            method: 'POST',
+            body: JSON.stringify(userObject),
+            headers: {
+              "Content-Type": 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(json => {
+            let dogName = document.querySelector('form')[1].value
+            Dog.createDog(json.id, dogName)
+          })
+        }
+      })
+    }
   }
 
 }
