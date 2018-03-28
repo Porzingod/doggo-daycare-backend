@@ -80,9 +80,7 @@ class Dog {
     const makeMoreHappy = (event) => {
       let userId = event.target.getAttribute('user_id')
       if (this.happiness < 10) {
-        this.happiness += 2
-        let happyObject = {happiness: this.happiness}
-        // this.updateDog(happyObject)
+        this.happiness += 1
         this.renderDogHappinessBars()
         setTimeout(function(){ document.body.append(heart(event, 1.5, 0, 5, 8)) }, 50);
         setTimeout(function(){ document.body.append(heart(event, 2, -22.5, 9, 10)) }, 200);
@@ -108,9 +106,7 @@ class Dog {
     const makeLessHungry = (event) => {
       let userId = event.target.getAttribute('user_id')
       if (this.hunger < 10) {
-        this.hunger += 2
-        let hungerObject = {hunger: this.hunger}
-        // this.updateDog(hungerObject)
+        this.hunger += 1
         this.renderStatBars('hunger', 1)
         this.makeMorePoopy()
       }
@@ -119,9 +115,7 @@ class Dog {
     const makeLessThirsty = (event) => {
       let userId = event.target.getAttribute('user_id')
       if(this.thirst < 10) {
-        this.thirst += 2
-        let thirstObject = {thirst: this.thirst}
-        // this.updateDog(thirstObject)
+        this.thirst += 1
         this.renderStatBars('thirst', 2)
         this.makeMorePipi()
       }
@@ -129,13 +123,12 @@ class Dog {
   }
 
   statIntervals() {
-
-    // setInterval(this.dogMovingAround, 3000)
-    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 2000) + 1000)
-    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 2000) + 1000)
-    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 2000) + 1000)
-    // setInterval(this.makeMorePoopy.bind(this), 12000)
-    // setInterval(this.makeMorePipi.bind(this), 12000)
+    setInterval(this.dogMovingAround, 3000)
+    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMorePoopy.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMorePipi.bind(this), Math.floor(Math.random() * 8000) + 5000)
     setInterval(this.updateDog.bind(this), 10000)
   }
 
@@ -147,7 +140,6 @@ class Dog {
       tenDivs.innerHTML += ` <div class="heart heart-${i}"></div>`
     }
     this.renderDogHappinessBars()
-
   }
 
   renderDogHappinessBars() {
@@ -159,14 +151,10 @@ class Dog {
       } else {
         happinessDivs.children[i].style.transform = "rotate(-45deg) scale(.4)"
       }
-
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      // ghostification(this)
       setTimeout(this.checkStats.bind(this), 10000)
-    } //else {
-    //   clearTimeout(ghostification)
-    // }
+    }
   }
 
   checkStats() {
@@ -192,11 +180,8 @@ class Dog {
       }
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      // ghostification(this)
       setTimeout(this.checkStats.bind(this), 10000)
-    }// else {
-    //   clearTimeout(ghostification)
-    // }
+    }
   }
 
   renderDogHunger() {
@@ -270,8 +255,6 @@ class Dog {
   makeLessHappy() {
     if (this.happiness > 1) {
       this.happiness -= 1
-      let happyObject = {happiness: this.happiness}
-      // this.updateDog(happyObject)
       this.renderDogHappinessBars()
     }
   }
@@ -279,8 +262,6 @@ class Dog {
   makeMoreHungry() {
     if (this.hunger > 1) {
       this.hunger -= 1
-      let hungerObject = {hunger: this.hunger}
-      // this.updateDog(hungerObject)
       this.renderStatBars('hunger', 1)
     }
   }
@@ -288,69 +269,32 @@ class Dog {
   makeMoreThirsty() {
     if(this.thirst > 1) {
       this.thirst -= 1
-      let thirstObject = {thirst: this.thirst}
-      // this.updateDog(thirstObject)
       this.renderStatBars('thirst', 2)
     }
   }
 
   makeMorePoopy() {
     if (this.poopy < 10) {
-      this.poopy += 3
-      let poopyObject = {poopy: this.poopy}
-      // this.updateDog(poopyObject)
+      this.poopy += 1
       this.renderStatBars('poopy', 3)
     } else if (this.poopy >= 10) {
       this.goPoopy()
       this.poopy = 1
-      let poopyObject = {poopy: this.poopy}
-      // this.updateDog(poopyObject)
       this.renderStatBars('poopy', 3)
     }
   }
 
   makeMorePipi() {
     if (this.pipi < 10) {
-      this.pipi += 3
-      let pipiObject = {pipi: this.pipi}
-      // this.updateDog(pipiObject)
+      this.pipi += 1
       this.renderStatBars('pipi', 4)
     } else if (this.pipi >= 10) {
       this.goPipi()
       this.pipi = 1
-      let pipiObject = {pipi: this.pipi}
-      // this.updateDog(pipiObject)
       this.renderStatBars('pipi', 4)
     }
   }
 
-  // static closeWindow() {
-  //   window.addEventListener('beforeunload', function(event) {
-  //     debugger
-  //     let userId = document.getElementById('doggo').getAttribute('user_id')
-  //     fetch(`${base_url}/users/${userId}/dogs`)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       debugger
-  //     })
-  //   })
-  // }
-
-  // static reloadWindow() {
-  //   let keys = {}
-  //   window.addEventListener('keydown', function(event) {
-  //     if(event.keyCode === 82) {
-  //       if(keys[91] || keys[17]){
-  //         debugger
-  //       }
-  //     } else if(event.keyCode === 91 || event.keyCode === 17) {
-  //       keys[event.keyCode] = 1
-  //     } else {
-  //       keys = {}
-  //     }
-  //   })
-  // }
-  //
   updateDog() {
     let object = {
       happiness: this.happiness,
@@ -367,18 +311,14 @@ class Dog {
       }
     })
   }
-  // static confirmation() {
-  //   window.onbeforeunload = function() {
-  //       return true;
-  //   };
-  // }
 
   goPoopy() {
     let div = document.createElement('img')
     div.setAttribute('id', 'poop')
-    div.src = "https://s3.amazonaws.com/kandipatternspatterns/misc/11950_Cute_Poop.png"
-    div.style.top = `${Math.floor(Math.random() * 65) + 15}%`
-    div.style.left = `${Math.floor(Math.random() * 75) + 15}%`
+    // NOTES -- replace image with local image once serena sends
+    div.src = "images/cute-poop.png"
+    div.style.top = `${Math.floor(Math.random() * 79) + (-12)}%`
+    div.style.left = `${Math.floor(Math.random() * 88) + (-9)}%`
     div.addEventListener('click', function(event) {
       event.target.remove()
     })
@@ -388,6 +328,8 @@ class Dog {
   goPipi() {
     let div = document.createElement('div')
     div.setAttribute('id', 'pee')
+    // NOTES
+    // div.src = "pee image that serena sends me"
     div.style.top = `${Math.floor(Math.random() * 95) + 1}%`
     div.style.left = `${Math.floor(Math.random() * 95) + 1}%`
     div.addEventListener('click', function(event) {
