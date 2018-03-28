@@ -89,7 +89,8 @@ class Dog {
         setTimeout(function(){ document.body.append(heart(event, 3, -40, 16, 11)) }, 500);
         setTimeout(function(){
           let temps = document.getElementsByClassName('temp')
-          for(let i = 0; i <= temps.length; i) { temps[i].remove() }
+          for(let i = 0; i < temps.length; i) {
+            temps[i].remove() }
         }, 1000)
       }
     }

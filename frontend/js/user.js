@@ -7,16 +7,21 @@ class User {
   displayDogs() {
     document.body.innerHTML = ""
     fetch(`${base_url}/users/${this.id}/dogs`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) { throw res }
+      return res.json()
+    })
     .then(json => {
       let dog = new Dog(json[0].id, json[0].name, json[0].happiness, json[0].hunger, json[0].thirst, json[0].poopy, json[0].pipi, json[0].user_id, json[0].color)
       if(json.length === 1) {
         dog.renderOneDog()
       }
-      // else {
-      //   renderTwoDogs(json)
-      // }
     })
+    // .catch( err => {
+    //   err.text().then( errorMessage => {
+    //     debugger
+    //   this.props.dispatch(displayTheError(errorMessage))
+    // })
   }
 
   static createUser(event) {
