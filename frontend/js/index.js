@@ -7,6 +7,18 @@ function getUsers() {
   .then(res => res.json())
 }
 
+let colorsArray = () => {
+  let colors = ["aquamarine", "chartreuse", "coral", "darkorchid", "deeppink", "pink", "red", "royalblue", "white", "yellow"]
+  let colorsRNG = []
+  colors.forEach(color => {
+    for(let i = 1; i <= 10; i ++) {
+      colorsRNG.push(color)
+    }
+  })
+  colorsRNG.push("rainbow")
+  return colorsRNG
+}
+
 function renderMessage(msg1, msg2) {
   let div = document.createElement('div')
   div.setAttribute('class', 'ui modal')

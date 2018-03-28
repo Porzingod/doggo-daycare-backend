@@ -16,6 +16,26 @@ class User {
     })
   }
 
+  static addKonamiCode() {
+    let konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+    let index = 0
+    document.addEventListener('keydown', function(event) {
+      if (konami[index] === event.keyCode) {
+        index++;
+        if (index === konami.length) {
+          let userId = document.getElementById('doggo').getAttribute('user_id')
+          let dogId = document.getElementById('doggo').getAttribute('dog_id')
+          debugger
+          Dog.reviveDog(userId, dogId)
+          index = 0;
+        }
+      } else {
+        index = 0;
+      }
+    })
+  }
+
+
   static createUser(event) {
     event.preventDefault()
     let user = document.getElementById('sign-up-username').value
@@ -44,6 +64,7 @@ class User {
           })
           .then(res => res.json())
           .then(json => {
+            debugger
             let dogName = document.querySelector('form')[1].value
             Dog.createDog(json.id, dogName)
           })

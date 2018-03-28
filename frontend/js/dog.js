@@ -11,16 +11,25 @@ class Dog {
     this.color = color
   }
 
-  static createDog(userId, dogName) {
-    let colors = ["aquamarine", "chartreuse", "coral", "darkorchid", "deeppink", "pink", "red", "royalblue", "white", "yellow"]
-    let colorsRNG = []
-    colors.forEach(color => {
-      for(let i = 1; i <= 10; i ++) {
-        colorsRNG.push(color)
+  static reviveDog(userId, dogId) {
+    fetch(`${base_url}/users/${userId}/dogs/${dogId}`)
+    .then(res => res.json())
+    .then(json => {
+      debugger
+      let colorObject = {color: colorsArray()[Math.floor(Math.random() * 100) + 0]}
+      document.querySelector('.annoying-dog.only-dog').src = `images/dog-${colorObject["color"]}.jpg`
+      let object = {
+        happiness: 10,
+        hunger: 10,
+        thirst: 10,
+        color: colorObject["color"]
       }
+      json.updateDog(object)
     })
-    colorsRNG.push("rainbow")
-    let dogObject = {name: dogName, user_id: userId, color: colorsRNG[Math.floor(Math.random() * 100) + 0]}
+  }
+
+  static createDog(userId, dogName) {
+    let dogObject = {name: dogName, user_id: userId, color: colorsArray()[Math.floor(Math.random() * 100) + 0]}
     fetch(`${base_url}/users/${userId}/dogs`, {
       method: 'POST',
       body: JSON.stringify(dogObject),
@@ -36,7 +45,7 @@ class Dog {
   }
 
   renderOneDog() {
-    document.body.innerHTML = `<div class="hidden" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 220px; margin-top: -100px; margin-left: -150px">
+    document.body.innerHTML = `<div class="hidden" dog_id="${this.id}" user_id='${this.user_id}' id="doggo" style="position: absolute; top: 50%; left: 50%; width: 300px; height: 220px; margin-top: -100px; margin-left: -150px">
       <p class="only-dog-name" style="position: absolute; left: 50%; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; text-align: center; font-size: 30px;">${this.name.substring(0,10)}</p>
       <img class="annoying-dog only-dog" style="position: absolute; top: 50%; left: 50%; margin-top: -60px; margin-left: -100px;" src="images/dog-${this.color}.jpg" alt="Annoying Dog">
       <button id="pet-dog" style="visibility: hidden; position: absolute; top: 100%; left: 50%; margin-left: -24px; margin-top: -30px; font-size:20px; color:black; font-weight: bold;">Pet</button>
@@ -51,6 +60,9 @@ class Dog {
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
     annoyingDog.addEventListener('mouseover', event => document.querySelector('audio').play())
     annoyingDog.addEventListener('mouseout', event => document.querySelector('audio').pause())
+    if(this.color === 'ghost'){
+      User.addKonamiCode()
+    }
   }
 
   renderDogStats() {
