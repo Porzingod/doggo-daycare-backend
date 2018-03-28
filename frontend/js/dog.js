@@ -180,8 +180,9 @@ class Dog {
       }
     }
     if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      // debugger
       ghostification(this)
+    } else {
+      clearTimeout(ghostification)
     }
   }
 
