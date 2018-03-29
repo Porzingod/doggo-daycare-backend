@@ -40,6 +40,59 @@ function renderMessage(msg1, msg2) {
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
+  let dogsBackground = (num) => {
+    let div = document.createElement('div')
+    div.setAttribute('class', 'dogs-background')
+
+    for(let i = 0; i < num; i++) {
+      div.innerHTML += `<img class="bg-dogs" style="top: ${Math.floor(Math.random() * 80) + 0}%; left: ${Math.floor(Math.random() * 85) + 0}%" src="images/dog-${colorsArray()[Math.floor(Math.random() * 100) + 0]}.jpg" alt="Annoying Dog">`
+    }
+    document.body.append(div)
+  }
+
+  let bgDogsMovingAround = () => {
+    let doggos = document.querySelectorAll('img')
+    for(let i = 0; i <= doggos.length; i++) {
+      let doggoTop = parseInt(doggos[i].style.top)
+      let doggoLeft = parseInt(doggos[i].style.left)
+
+      if (doggoTop <= 5) {
+        // move down if dog reaches top
+        doggos[i].style.top = `${doggoTop + 4}%`
+      } else if (doggoTop >= 75) {
+        // move up if dog reaches bottom
+        doggos[i].style.top = `${doggoTop - 4}%`
+      } else {
+        if (Math.random() >= .5) {
+          // move up
+          doggos[i].style.top = `${doggoTop + 4}%`
+        } else {
+          // move down
+          doggos[i].style.top = `${doggoTop - 4}%`
+        }
+      }
+
+      if (doggoLeft >= 83) {
+        // move left if dog reaches right
+        doggos[i].style.left = `${doggoLeft - 4}%`
+      } else if (doggoLeft <= 0) {
+        // move right if dog reaches left
+        doggos[i].style.left = `${doggoLeft + 4}%`
+      } else {
+        if (Math.random() >= .5) {
+          // move left
+          doggos[i].style.left = `${doggoLeft - 4}%`
+        } else {
+          // move right
+          doggos[i].style.left = `${doggoLeft + 4}%`
+        }
+      }
+    }
+  }
+
+  dogsBackground(3)
+  setInterval(bgDogsMovingAround, 20)
+
   let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
   const signUp = document.getElementById('sign-up-btn')
