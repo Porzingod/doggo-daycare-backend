@@ -75,10 +75,10 @@ h1 {
 
 #poop {
   position: absolute;
-  transform: scale(.3);
+  transform: scale(.6);
 }
 
 #pee {
   position: absolute;
-  transform: scale(.25);
+  transform: scale(.5);
 }
