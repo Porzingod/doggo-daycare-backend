@@ -51,8 +51,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   let bgDogsMovingAround = () => {
-    let doggos = document.querySelectorAll('img')
-    for(let i = 0; i <= doggos.length; i++) {
+    let doggos = document.querySelectorAll('.bg-dogs')
+    for(let i = 0; i < doggos.length; i++) {
+      // debugger
       let doggoTop = parseInt(doggos[i].style.top)
       let doggoLeft = parseInt(doggos[i].style.left)
 
