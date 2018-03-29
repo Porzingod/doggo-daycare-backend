@@ -6,5 +6,5 @@ const ghostification = (obj) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(User.addKonamiCode())
+  })//.then(User.addKonamiCode())
 }

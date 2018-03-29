@@ -10,23 +10,31 @@ class Dog {
     this.user_id = user_id
     this.color = color
   }
-
-  static reviveDog(userId, dogId) {
-    fetch(`${base_url}/users/${userId}/dogs/${dogId}`)
-    .then(res => res.json())
-    .then(json => {
-      debugger
-      let colorObject = {color: colorsArray()[Math.floor(Math.random() * 100) + 0]}
-      document.querySelector('.annoying-dog.only-dog').src = `images/dog-${colorObject["color"]}.jpg`
-      let object = {
-        happiness: 10,
-        hunger: 10,
-        thirst: 10,
-        color: colorObject["color"]
-      }
-      json.updateDog(object)
-    })
-  }
+  //
+  // static reviveDog(userId, dogId) {
+  //   let colorObject = {color: colorsArray()[Math.floor(Math.random() * 100) + 0]}
+  //   document.querySelector('.annoying-dog.only-dog').src = `images/dog-${colorObject["color"]}.jpg`
+  //   let object = {
+  //     happiness: 10,
+  //     hunger: 10,
+  //     thirst: 10,
+  //     color: colorObject["color"]
+  //   }
+  //   fetch(`${base_url}/users/${userId}/dogs/${dogId}`, {
+  //     method: "PATCH",
+  //     body: JSON.stringify(object),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       renderMessage('YOUR DOG HAS BEEN REVIVED', 'PLEASE TAKE BETTER CARE OF YOUR DOG')
+  //       $('.ui.modal').modal('show');
+  //       let dog = new Dog(json.id, json.name, json.happiness, json.hunger, json.thirst, json.poopy, json.pipi, json.user_id, json.color)
+  //       dog.renderOneDog()
+  //     })
+  // }
 
   static createDog(userId, dogName) {
     let dogObject = {name: dogName, user_id: userId, color: colorsArray()[Math.floor(Math.random() * 100) + 0]}
@@ -62,9 +70,9 @@ class Dog {
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
     annoyingDog.addEventListener('mouseover', event => document.querySelector('audio').play())
     annoyingDog.addEventListener('mouseout', event => document.querySelector('audio').pause())
-    if(this.color === 'ghost'){
+    //if(this.color === 'ghost'){
       User.addKonamiCode()
-    }
+    //}
   }
 
   renderDogStats() {
@@ -76,7 +84,7 @@ class Dog {
     let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
     annoyingDog.addEventListener('click', function(event) {
-      if(document.getElementsByClassName('hidden').length === 1) {
+      if(document.getElementsByClassName('hidden').length >= 1) {
         let userId = event.target.parentElement.getAttribute('user_id')
         let buttons = document.querySelectorAll('button')
         buttons.forEach(button => button.style.visibility = 'visible')
@@ -138,11 +146,12 @@ class Dog {
 
   statIntervals() {
     setInterval(this.dogMovingAround, 3000)
-    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMorePoopy.bind(this), Math.floor(Math.random() * 5000) + 3000)
-    setInterval(this.makeMorePipi.bind(this), Math.floor(Math.random() * 5000) + 3000)
+    // happiness needs to go down slower than the rest for the modal to not keep popping up
+    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 13000) + 11000)
+    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 5000) + 3000)
+    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 5000) + 3000)
+    setInterval(this.makeMorePoopy.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMorePipi.bind(this), Math.floor(Math.random() * 8000) + 5000)
     setInterval(this.updateDog.bind(this), 10000)
   }
 
@@ -166,11 +175,10 @@ class Dog {
         happinessDivs.children[i].style.transform = "rotate(-45deg) scale(.4)"
       }
     }
-    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      // ghostification(this)
+    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1 && this.color !== 'ghost') {
       renderMessage("YOUR DOG WILL DIE IF YOU DON'T TAKE CARE OF HIM", 'PLEASE CARE FOR YOUR DOG')
       $('.ui.modal').modal('show');
-      setTimeout(this.checkStats.bind(this), 10000)
+      setTimeout(this.checkStats.bind(this), 100000)
     }
   }
 
@@ -196,10 +204,9 @@ class Dog {
         statDivs.children[i].style.height = "5px"
       }
     }
-    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1) {
-      // ghostification(this)
-      renderMessage("YOUR DOG WILL DIE IF YOU DON'T TAKE CARE OF HIM", 'PLEASE CARE FOR YOUR DOG')
-      $('.ui.modal').modal('show');
+    if (this.happiness === 1 && this.hunger === 1 && this.thirst === 1 && this.color !== 'ghost') {
+      // renderMessage("YOUR DOG WILL DIE IF YOU DON'T TAKE CARE OF HIM", 'PLEASE CARE FOR YOUR DOG')
+      // $('.ui.modal').modal('show');
       setTimeout(this.checkStats.bind(this), 10000)
     }
   }
@@ -324,7 +331,7 @@ class Dog {
       pipi: this.pipi
     }
     fetch(`${base_url}/users/${this.user_id}/dogs/${this.id}`, {
-      method: "PUT",
+      method: "PATCH",
       body: JSON.stringify(object),
       headers: {
         'Content-Type': 'application/json'

@@ -23,10 +23,11 @@ class User {
       if (konami[index] === event.keyCode) {
         index++;
         if (index === konami.length) {
-          let userId = document.getElementById('doggo').getAttribute('user_id')
-          let dogId = document.getElementById('doggo').getAttribute('dog_id')
-          debugger
-          Dog.reviveDog(userId, dogId)
+          // let userId = document.getElementById('doggo').getAttribute('user_id')
+          // let dogId = document.getElementById('doggo').getAttribute('dog_id')
+          // debugger
+          //Dog.reviveDog(userId, dogId)
+          alert('hi')
           index = 0;
         }
       } else {
@@ -64,7 +65,6 @@ class User {
           })
           .then(res => res.json())
           .then(json => {
-            debugger
             let dogName = document.querySelector('form')[1].value
             Dog.createDog(json.id, dogName)
           })
