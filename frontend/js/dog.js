@@ -61,6 +61,8 @@ class Dog {
       <button id="hydrate-dog" style="visibility: hidden; position: absolute; color:black; top: 50%; left: 100%; margin-top: -5px; margin-left: -65px; font-size:20px; font-weight: bold;">Hydrate</button>
     </div>
     <audio loop><source src="./audio/Gabe_the_dog_Do_the_hustle.mp3"></audio>`
+    // <img id="pee" src="images/cute-poop.png" style="top: -27%; left: -13%;">
+    // <img id="pee" src="images/cute-poop.png" style="top: -27%; left: -13%;">
     // <img id="pee" src="images/cute-pee.png" style="top: -27%; left: -13%;">
     // <img id="pee" src="images/cute-pee.png" style="top: 45%; left: 72%;">`
     let dogName = document.getElementsByClassName('only-dog-name')[0]
@@ -344,8 +346,8 @@ class Dog {
     div.setAttribute('id', 'poop')
     // NOTES -- replace image with local image once serena sends
     div.src = "images/cute-poop.png"
-    div.style.top = `${Math.floor(Math.random() * 79) + (-12)}%`
-    div.style.left = `${Math.floor(Math.random() * 88) + (-9)}%`
+    div.style.top = `${Math.floor(Math.random() * 81) + (-2)}%`
+    div.style.left = `${Math.floor(Math.random() * 89) + (-2)}%`
     div.addEventListener('click', function(event) {
       event.target.remove()
     })
@@ -357,8 +359,8 @@ class Dog {
     div.setAttribute('id', 'pee')
     // NOTES
     div.src = "images/cute-pee.png"
-    div.style.top = `${Math.floor(Math.random() * 74) + (-29)}%`
-    div.style.left = `${Math.floor(Math.random() * 88) + (-15)}%`
+    div.style.top = `${Math.floor(Math.random() * 78) + (-10)}%`
+    div.style.left = `${Math.floor(Math.random() * 89) + (-5)}%`
     div.addEventListener('click', function(event) {
       event.target.remove()
     })
