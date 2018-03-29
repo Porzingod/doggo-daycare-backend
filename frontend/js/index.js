@@ -107,10 +107,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const form = document.getElementById('log-in-form')
   form.addEventListener('submit', function(event) {
     event.preventDefault()
-    if (findUser()) {
-      clearInterval(movingBgDogs)
-      findUser()
-    }
+    findUser()
   })
 
 
@@ -129,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         user.displayDogs()
       }
     })
+    clearInterval(movingBgDogs)
   }
 
 

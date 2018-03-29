@@ -28,7 +28,7 @@ class User {
           // debugger
           //Dog.reviveDog(userId, dogId)
           dogsBackground(10)
-          let movingBgDogs = setInterval(bgDogsMovingAround, 50)
+          let movingBgDogs = setInterval(bgDogsMovingAround, 500)
           index = 0;
         }
       } else {
