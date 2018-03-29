@@ -5,10 +5,15 @@ const base_url = 'http://localhost:3000/api/v1'
 let dogsBackground = (num) => {
   let div = document.createElement('div')
   div.setAttribute('class', 'dogs-background')
-
   for(let i = 0; i < num; i++) {
-    div.innerHTML += `<img class="bg-dogs" style="top: ${Math.floor(Math.random() * 80) + 0}%; left: ${Math.floor(Math.random() * 85) + 0}%" src="images/dog-${colorsArray()[Math.floor(Math.random() * 100) + 0]}.jpg" alt="Annoying Dog">`
+    div.innerHTML += `<img class="bg-dogs" style="top: ${Math.floor(Math.random() * 80) + 0}%; left: ${Math.floor(Math.random() * 85) + 0}%" src="images/dog-${colorsArray()[Math.floor(Math.random() * 100) + 0]}.png" alt="Annoying Dog">`
   }
+  // let div = document.getElementById('dogs-background')
+  document.addEventListener('keydown', function(event) {
+    if(event.keyCode === 27){
+      div.remove()
+    }
+  })
   document.body.append(div)
 }
 
