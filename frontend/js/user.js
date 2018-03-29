@@ -27,7 +27,8 @@ class User {
           // let dogId = document.getElementById('doggo').getAttribute('dog_id')
           // debugger
           //Dog.reviveDog(userId, dogId)
-          alert('hi')
+          dogsBackground(10)
+          let movingBgDogs = setInterval(bgDogsMovingAround, 50)
           index = 0;
         }
       } else {
