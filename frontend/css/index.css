@@ -10,12 +10,6 @@ h1 {
   font-size: 5em;
 }
 
-#bg-dogs {
-  position: absolute;
-  z-index: -1;
-  overflow: hidden;
-  width: 200px;
-}
 
 #doggo-camp {
   position: absolute;
