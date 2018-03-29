@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     div.setAttribute('class', 'dogs-background')
 
     for(let i = 0; i < num; i++) {
-      div.innerHTML += `<img class="bg-dogs" style="top: ${Math.floor(Math.random() * 80) + 0}%; left: ${Math.floor(Math.random() * 85) + 0}%" src="images/dog-${colorsArray()[Math.floor(Math.random() * 100) + 0]}.jpg" alt="Annoying Dog">`
+      div.innerHTML += `<img class="bg-dogs" style="top: ${Math.floor(Math.random() * 80) + 0}%; left: ${Math.floor(Math.random() * 85) + 0}%" src="images/dog-${colorsArray()[Math.floor(Math.random() * 100) + 0]}.png" alt="Annoying Dog">`
     }
     document.body.append(div)
   }
@@ -92,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   dogsBackground(3)
-  setInterval(bgDogsMovingAround, 20)
+  let movingBgDogs = () => setInterval(bgDogsMovingAround, 20)
+  movingBgDogs()
 
   let annoyingDog = document.querySelector('.annoying-dog.only-dog')
 
