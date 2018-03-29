@@ -79,7 +79,5 @@ h1 {
 
 #pee {
   position: absolute;
-  background-color: yellow;
-  width: 50px;
-  height: 50px;
+  transform: scale(.25);
 }

@@ -53,6 +53,8 @@ class Dog {
       <button id="hydrate-dog" style="visibility: hidden; position: absolute; color:black; top: 50%; left: 100%; margin-top: -5px; margin-left: -65px; font-size:20px; font-weight: bold;">Hydrate</button>
     </div>
     <audio loop><source src="./audio/Gabe_the_dog_Do_the_hustle.mp3"></audio>`
+    // <img id="pee" src="images/cute-pee.png" style="top: -27%; left: -13%;"></img>
+    // <img id="pee" src="images/cute-pee.png" style="top: 45%; left: 72%;"></img>`
     let dogName = document.getElementsByClassName('only-dog-name')[0]
     dogName.style.marginLeft = `-${dogName.offsetWidth/2}px`
     this.renderDogStats()
@@ -135,13 +137,13 @@ class Dog {
   }
 
   statIntervals() {
-    setInterval(this.dogMovingAround, 3000)
-    setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMorePoopy.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.makeMorePipi.bind(this), Math.floor(Math.random() * 8000) + 5000)
-    setInterval(this.updateDog.bind(this), 10000)
+    // setInterval(this.dogMovingAround, 3000)
+    // setInterval(this.makeLessHappy.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    // setInterval(this.makeMoreHungry.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    // setInterval(this.makeMoreThirsty.bind(this), Math.floor(Math.random() * 8000) + 5000)
+    setInterval(this.makeMorePoopy.bind(this), Math.floor(Math.random() * 100) + 50)
+    setInterval(this.makeMorePipi.bind(this), Math.floor(Math.random() * 100) + 20)
+    // setInterval(this.updateDog.bind(this), 10000)
   }
 
   renderDogHappiness() {
@@ -344,12 +346,12 @@ class Dog {
   }
 
   goPipi() {
-    let div = document.createElement('div')
+    let div = document.createElement('img')
     div.setAttribute('id', 'pee')
     // NOTES
-    // div.src = "pee image that serena sends me"
-    div.style.top = `${Math.floor(Math.random() * 95) + 1}%`
-    div.style.left = `${Math.floor(Math.random() * 95) + 1}%`
+    div.src = "images/cute-pee.png"
+    div.style.top = `${Math.floor(Math.random() * 74) + (-29)}%`
+    div.style.left = `${Math.floor(Math.random() * 88) + (-15)}%`
     div.addEventListener('click', function(event) {
       event.target.remove()
     })
