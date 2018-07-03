@@ -7,6 +7,6 @@ This applicatoin was built using vanilla JS and a Ruby on Rails API backend. Bei
 
 <a href="https://youtu.be/Pi0hbxoUGb8">Video Demo</a>
 
-<a href="https://porzingod.github.io/doggo-daycare/">Live Demo</a>
+<a href="https://porzingod.github.io/doggo_daycare/">Live Demo</a>
 
 ![Doggo Daycare](https://i.imgur.com/KdBQqZ4.png)
